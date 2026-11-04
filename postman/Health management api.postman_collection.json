@@ -1,157 +1,87 @@
 {
   "info": {
-    "_postman_id": "d1f348f4-778d-4c5c-a6cf-a6fc79d6ab17",
-    "name": "Health management api",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "59397184"
+    "name": "DemoAPI - Health + Users CRUD",
+    "description": "Postman tests for the combined Docker health-check and FastAPI Users CRUD application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
   "item": [
     {
-      "name": "endpoints",
-      "item": [
-        {
-          "name": "Create users",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"hemang vashi \",\r\n  \"email\": \"hemang@gmail.com\",\r\n  \"phone\": \"9876543210\",\r\n  \"status\": \"active\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/v1/users",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "v1",
-                "users"
-              ]
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "2. Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aditya Raj\",\n  \"email\": \"aditya@gmail.com\",\n  \"phone\": \"9876543210\",\n  \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
             }
-          },
-          "response": []
+          }
         },
-        {
-          "name": "display all users",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/v1/all_users",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "v1",
-                "all_users"
-              ]
+        "url": "{{baseUrl}}/api/v1/users"
+      }
+    },
+    {
+      "name": "3. Get All Users",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/all_users"
+      }
+    },
+    {
+      "name": "4. Get User By ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/fetch/user/1"
+      }
+    },
+    {
+      "name": "5. Update User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aditya Raj Updated\",\n  \"email\": \"aditya.updated@gmail.com\",\n  \"phone\": \"9876543210\",\n  \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
             }
-          },
-          "response": []
+          }
         },
-        {
-          "name": "Fetch data using user id",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/v1/fetch/user/1",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "v1",
-                "fetch",
-                "user",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "update user data",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"aditya\",\r\n  \"email\": \"rahul@gmail.com\",\r\n  \"phone\": \"9876543210\",\r\n  \"status\": \"active\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/v1/user/1",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete user",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/v1/user/2",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "2"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
+        "url": "{{baseUrl}}/api/v1/user/1"
+      }
+    },
+    {
+      "name": "6. Delete User",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/v1/user/1"
+      }
     }
   ]
 }
