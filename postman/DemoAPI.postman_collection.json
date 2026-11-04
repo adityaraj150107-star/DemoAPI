@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "DemoAPI - Health + Users CRUD",
+    "description": "Postman tests for the combined Docker health-check and FastAPI Users CRUD application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "2. Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aditya Raj\",\n  \"email\": \"aditya@gmail.com\",\n  \"phone\": \"9876543210\",\n  \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/v1/users"
+      }
+    },
+    {
+      "name": "3. Get All Users",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/all_users"
+      }
+    },
+    {
+      "name": "4. Get User By ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/fetch/user/1"
+      }
+    },
+    {
+      "name": "5. Update User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aditya Raj Updated\",\n  \"email\": \"aditya.updated@gmail.com\",\n  \"phone\": \"9876543210\",\n  \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/v1/user/1"
+      }
+    },
+    {
+      "name": "6. Delete User",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/v1/user/1"
+      }
+    }
+  ]
+}
