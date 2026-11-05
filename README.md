@@ -160,3 +160,16 @@ This is a learning/demo implementation using in-memory Python dictionaries/lists
 ---
 
 ⭐ If you find this project useful, consider giving it a star.
+
+
+## 📅 Internship Task Log
+
+Work is documented day by day. Each folder contains the objective, task checklist, commands, deliverables, and space for notes/screenshots.
+
+| Day | Topic | Documentation |
+|---|---|---|
+| Day 01 | Tools Setup & Git Basics | [Open Day 01](Day-01-Tools-Setup-and-Git/README.md) |
+| Day 02 | Docker Development Environment | [Open Day 02](Day-02-Docker-Development-Environment/README.md) |
+| Day 03 | FastAPI Users API with Pydantic V2 | [Open Day 03](Day-03-FastAPI-Pydantic-V2-Users-API/README.md) |
+
+> **Note:** These folders organize task documentation. The runnable application remains in `app/`, with V1 and V2 kept side by side. Check off tasks only after completing and verifying them.
