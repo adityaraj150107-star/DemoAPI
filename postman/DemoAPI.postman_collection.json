@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "DemoAPI - Health + Users CRUD",
-    "description": "Postman tests for the combined Docker health-check and FastAPI Users CRUD application.",
+    "description": "Postman requests for DemoAPI health check and both versioned Users APIs (V1 and V2).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -82,6 +82,98 @@
         "method": "DELETE",
         "url": "{{baseUrl}}/api/v1/user/1"
       }
+    },
+    {
+      "name": "V2 - Users CRUD",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Aditya Raj\",\n  \"email\": \"aditya.v2@example.com\",\n  \"age\": 21,\n  \"phone\": \"9876543210\",\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/v2/users/"
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/users/"
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/users/1"
+          }
+        },
+        {
+          "name": "Replace User (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Aditya Raj Updated\",\n  \"email\": \"aditya.updated@example.com\",\n  \"age\": 22,\n  \"phone\": \"9876543210\",\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/v2/users/1"
+          }
+        },
+        {
+          "name": "Partial Update (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/v2/users/1"
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/users/1"
+          }
+        }
+      ]
     }
   ]
 }
