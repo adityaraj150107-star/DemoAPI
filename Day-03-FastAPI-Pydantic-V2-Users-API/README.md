@@ -1,36 +1,23 @@
-# Day 03 — FastAPI Users API with Pydantic V2
+# Day 03 — FastAPI CRUD Operations
 
 ## Objective
-Create validated request and response models for the Users master using Pydantic V2 and organize the API by version.
+Understand and implement Create, Read, Update, and Delete (CRUD) operations for a Users API using FastAPI.
 
 ## Tasks
-- [ ] Understand Pydantic V2 request and response models.
-- [ ] Define required and optional user fields.
-- [ ] Add sensible default values.
-- [ ] Apply type checks and field constraints.
-- [ ] Validate email and other user inputs.
-- [ ] Provide clear validation error messages.
-- [ ] Implement or review Users CRUD endpoints.
-- [ ] Keep V1 and V2 endpoints organized separately.
-- [ ] Verify endpoints through Swagger UI or Postman.
+- [ ] Understand HTTP methods: GET, POST, PUT, and DELETE.
+- [ ] Create an endpoint to add a user.
+- [ ] Create an endpoint to retrieve users.
+- [ ] Create an endpoint to retrieve a user by ID.
+- [ ] Create an endpoint to update a user.
+- [ ] Create an endpoint to delete a user.
+- [ ] Understand path parameters and request bodies.
+- [ ] Return suitable HTTP status codes and error responses.
+- [ ] Try the endpoints using Swagger UI or Postman.
 
 ## Current application locations
-
-- Models: `app/models/user.py`
-- V1 endpoints: `app/api/v1/endpoints/users.py`
-- V2 endpoints: `app/api/v2/endpoints/users.py`
 - Application entry point: `app/main.py`
-
-## V2 endpoints
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| POST | `/api/v2/users/` | Create a user |
-| GET | `/api/v2/users/` | List users |
-| GET | `/api/v2/users/{user_id}` | Get a user |
-| PUT | `/api/v2/users/{user_id}` | Replace a user |
-| PATCH | `/api/v2/users/{user_id}` | Partially update a user |
-| DELETE | `/api/v2/users/{user_id}` | Delete a user |
+- V1 Users endpoints: `app/api/v1/endpoints/users.py`
+- V2 Users endpoints: `app/api/v2/endpoints/users.py`
 
 ## Run locally
 
@@ -40,12 +27,21 @@ uvicorn app.main:app --reload
 
 Open Swagger UI at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
+## CRUD overview
+
+| Operation | HTTP method | Purpose |
+|---|---|---|
+| Create | POST | Add a new user |
+| Read | GET | Retrieve users |
+| Update | PUT / PATCH | Update user information |
+| Delete | DELETE | Remove a user |
+
 ## Deliverables
-- Pydantic V2 user schemas.
-- Versioned Users API.
-- Validation and CRUD endpoint examples.
+- FastAPI Users CRUD endpoints.
+- Understanding of HTTP methods, path parameters, and request bodies.
+- API requests demonstrated through Swagger UI or Postman.
 
 ## Notes
-The current demo uses in-memory storage. Data resets when the app restarts; V1 and V2 do not share the same in-memory records.
+Add the actual work details, commands, and screenshots here. Mark checklist items complete only after you have performed and verified them.
 
-**Status:** Documentation structure created. Run and verify the endpoints before marking implementation tasks complete.
+**Status:** Task documentation organized; verify implementation locally.
