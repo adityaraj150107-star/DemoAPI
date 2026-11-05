@@ -1,0 +1,46 @@
+$kind: http-example
+request:
+  url: http://127.0.0.1:8000/api/v2/api/v2/
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 05 Nov 2026 10:32:14 GMT
+    server: uvicorn
+    content-length: "366"
+    content-type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "message": "Users fetched successfully",
+        "total_users": 3,
+        "data": [
+          {
+            "name": "Vijay",
+            "email": "vijay@example.com",
+            "age": 21,
+            "phone": "8041857594",
+            "is_active": true,
+            "id": 4
+          },
+          {
+            "name": "Ayush",
+            "email": "ayush@example.com",
+            "age": 21,
+            "phone": "8087546895",
+            "is_active": true,
+            "id": 5
+          },
+          {
+            "name": "Ayushii",
+            "email": "ayushii@example.com",
+            "age": 21,
+            "phone": "8088746895",
+            "is_active": true,
+            "id": 6
+          }
+        ]
+      }
+order: 4000

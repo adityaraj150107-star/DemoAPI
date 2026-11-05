@@ -1,0 +1,40 @@
+$kind: http-example
+request:
+  url: |
+    http://127.0.0.1:8000/api/v2/api/v2/
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"name\": \"Vikram\",\r
+
+      \  \"email\": \"vikram@example.com\",\r
+
+      \  \"age\": 21,\r
+
+      \  \"phone\": \"8087548695\",\r
+
+      \  \"is_active\": true\r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    date: Thu, 05 Nov 2026 10:37:40 GMT
+    server: uvicorn
+    content-length: "100"
+    content-type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "name": "Vikram",
+        "email": "vikram@example.com",
+        "age": 21,
+        "phone": "8087548695",
+        "is_active": true,
+        "id": 7
+      }
+order: 1000

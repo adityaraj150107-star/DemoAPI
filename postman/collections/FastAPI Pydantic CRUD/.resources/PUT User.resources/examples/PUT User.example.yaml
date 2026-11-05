@@ -1,0 +1,32 @@
+$kind: http-example
+request:
+  url: |
+    http://127.0.0.1:8000/api/v2/api/v2/2
+  method: PUT
+  body:
+    type: json
+    content: ""
+response:
+  statusCode: 422
+  statusText: Unprocessable Entity
+  headers:
+    date: Thu, 05 Nov 2026 10:06:29 GMT
+    server: uvicorn
+    content-length: "82"
+    content-type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body"
+            ],
+            "msg": "Field required",
+            "input": null
+          }
+        ]
+      }
+order: 1000
