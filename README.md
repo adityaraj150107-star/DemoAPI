@@ -171,6 +171,54 @@ Work is documented day by day. Each folder contains the objective, task checklis
 | Day 01 | Tools Setup & Git Basics | [Open Day 01](Day-01-Tools-Setup-and-Git/README.md) |
 | Day 02 | Docker Development Environment | [Open Day 02](Day-02-Docker-Development-Environment/README.md) |
 | Day 03 | FastAPI CRUD Operations | [Open Day 03](Day-03-FastAPI-Pydantic-V2-Users-API/README.md) |
-| Day 04 | Pydantic V2 Request & Response Models | [Open Day 04](Day-04-Pydantic-V2-Users-Models/README.md) |\n| Day 05 | PostgreSQL + SQLAlchemy CRUD (FastAPI V3) | [Open Day 05](Day-05-FastAPI-PostgreSQL-SQLAlchemy/README.md) |
+| Day 04 | Pydantic V2 Request & Response Models | [Open Day 04](Day-04-Pydantic-V2-Users-Models/README.md) |
+| Day 05 | PostgreSQL + SQLAlchemy CRUD (FastAPI V3) | [Open Day 05](Day-05-FastAPI-PostgreSQL-SQLAlchemy/README.md) |\n| Day 05 | PostgreSQL + SQLAlchemy CRUD (FastAPI V3) | [Open Day 05](Day-05-FastAPI-PostgreSQL-SQLAlchemy/README.md) |
+
+
+## 📅 Day 05 — PostgreSQL & SQLAlchemy with FastAPI
+
+**Objective:** Learn relational database operations with PostgreSQL and build a database-backed REST API using SQLAlchemy ORM and FastAPI.
+
+### Task 1 — PostgreSQL Database Operations
+
+- Created and worked with the `demoapi_day5` database.
+- Created a `users` table with primary key, unique email, constraints, defaults, and timestamp.
+- Practiced `INSERT`, `SELECT`, `UPDATE`, and `DELETE` queries.
+- Used filtering (`WHERE`), sorting (`ORDER BY`), limiting results (`LIMIT`), and aggregate queries (`COUNT`, `GROUP BY`).
+- Added sample records and verified query results in PostgreSQL.
+
+**Deliverable:** [PostgreSQL SQL scripts and task instructions](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-01-PostgreSQL/README.md)
+
+### Task 2 — SQLAlchemy ORM CRUD API (FastAPI V3)
+
+- Connected FastAPI to PostgreSQL using SQLAlchemy 2.x ORM and the Psycopg driver.
+- Configured the SQLAlchemy engine, session factory, and database dependency.
+- Created a SQLAlchemy `User` model and Pydantic request/response schemas.
+- Implemented Create, Read, Update, and Delete operations.
+- Added validation, duplicate-email handling (HTTP 409), and not-found handling (HTTP 404).
+- Exposed versioned V3 endpoints and interactive Swagger documentation.
+
+**V3 endpoints**
+
+| Method | Endpoint | Operation |
+|---|---|---|
+| GET | `/health` | Health check |
+| POST | `/api/v3/users/` | Create user |
+| GET | `/api/v3/users/` | List users |
+| GET | `/api/v3/users/{user_id}` | Retrieve user |
+| PUT | `/api/v3/users/{user_id}` | Update user |
+| DELETE | `/api/v3/users/{user_id}` | Delete user |
+
+**Deliverable:** [FastAPI V3 + SQLAlchemy CRUD implementation](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
+
+### Technologies & Concepts Learned
+
+`PostgreSQL` · `SQL` · `FastAPI` · `SQLAlchemy 2.x` · `Psycopg 3` · `Pydantic v2` · `REST API` · `ORM` · `Database Sessions` · `CRUD`
+
+### Day 05 Learning Outcome
+
+Understood how to perform database operations directly with PostgreSQL and how to integrate a relational database into FastAPI through SQLAlchemy ORM. Built a separate V3 CRUD API while keeping the existing V1 and V2 learning implementations intact.
+
+> **Note:** Day 05 V3 is a separate runnable application. Configure the local PostgreSQL connection in the task's `.env` file before running it. Never commit real database credentials.
 
 > **Note:** These folders organize task documentation. The runnable application remains in `app/`, with V1 and V2 kept side by side. Check off tasks only after completing and verifying them.
