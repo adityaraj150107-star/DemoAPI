@@ -1,53 +1,72 @@
 # Day 04 — Pydantic V2 Request & Response Models
 
 ## Objective
-Create Pydantic V2 request and response models for the Users master, including required fields, default values, type checks, constraints, and clear validation errors.
+Create Pydantic V2 request and response models for a Users API with required fields, defaults, type checks, constraints, and clear validation errors.
 
-## Tasks
-- [ ] Understand Pydantic V2 and BaseModel.
-- [ ] Create a UserCreate request model.
-- [ ] Create a UserUpdate model.
-- [ ] Create a UserResponse model.
-- [ ] Identify required and optional fields.
-- [ ] Set suitable default values.
-- [ ] Add type validation and field constraints.
-- [ ] Validate email and other user inputs.
-- [ ] Add clear validation error messages.
-- [ ] Connect the schemas to FastAPI endpoints.
-- [ ] Test valid and invalid request bodies in Swagger UI or Postman.
+## Project structure
+```text
+Day-04-Pydantic-V2-Users-Models/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── api/
+│   │   └── v2/endpoints/users.py
+│   └── models/user.py
+├── requirements.txt
+└── README.md
+```
 
-## Current application locations
-- Pydantic models: `app/models/user.py`
-- V1 Users endpoints: `app/api/v1/endpoints/users.py`
-- V2 Users endpoints: `app/api/v2/endpoints/users.py`
-- Application entry point: `app/main.py`
-
-## Run locally
+## Setup and run — Windows PowerShell
+Run from this folder:
 
 ```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Open Swagger UI at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Swagger UI: http://127.0.0.1:8000/docs
 
-## V2 Users endpoints
+## Models covered
+- `UserCreate`: validates new user data.
+- `UserUpdate`: supports partial updates using `model_dump(exclude_unset=True)`.
+- `UserResponse`: defines the API response shape.
+- `UsersListResponse`: returns a collection and total count.
+- `MessageResponse`: standard message response.
+
+## V2 endpoints
 
 | Method | Endpoint | Purpose |
 |---|---|---|
-| POST | `/api/v2/users/` | Create a user |
+| POST | `/api/v2/users/` | Create user |
 | GET | `/api/v2/users/` | List users |
-| GET | `/api/v2/users/{user_id}` | Get a user |
-| PUT | `/api/v2/users/{user_id}` | Replace a user |
-| PATCH | `/api/v2/users/{user_id}` | Partially update a user |
-| DELETE | `/api/v2/users/{user_id}` | Delete a user |
+| GET | `/api/v2/users/{user_id}` | Get one user |
+| PUT | `/api/v2/users/{user_id}` | Replace user |
+| PATCH | `/api/v2/users/{user_id}` | Partially update user |
+| DELETE | `/api/v2/users/{user_id}` | Delete user |
 
-## Deliverables
-- Pydantic V2 request and response schemas.
-- Required/optional fields and default values.
-- Type checks, field constraints, and validation examples.
-- Updated Users API integration.
+## Example request
+```json
+{
+  "name": "Aditya Raj",
+  "email": "aditya@example.com",
+  "age": 21,
+  "phone": "9876543210",
+  "is_active": true
+}
+```
 
-## Notes
-The current demo uses in-memory storage. Data resets when the app restarts; V1 and V2 do not share the same in-memory records. Add screenshots of successful and failed validation requests after testing.
+## Validation covered
+- Name length constraints.
+- Email format validation through `EmailStr`.
+- Age boundaries.
+- Optional phone field.
+- Boolean default for `is_active`.
+- Unknown request fields rejected through `extra="forbid"`.
+- Duplicate email conflict and user-not-found responses.
 
-**Status:** Task documentation created. Verify the implementation and tests before marking checklist items complete.
+## Important
+This is a separate learning app using in-memory storage. Data resets when the application restarts. PostgreSQL and SQLAlchemy persistence are covered in Day 05.
+
+Test both valid and invalid payloads in Swagger UI and capture your own screenshots before submission.
