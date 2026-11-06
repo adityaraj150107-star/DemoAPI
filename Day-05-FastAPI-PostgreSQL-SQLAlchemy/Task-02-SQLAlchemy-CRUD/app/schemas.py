@@ -1,0 +1,28 @@
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
+
+
+class UserCreate(BaseModel):
+    name: str = Field(..., min_length=2, max_length=100, description="User full name")
+    email: EmailStr
+    age: int | None = Field(default=None, ge=0, le=120)
+    is_active: bool = True
+
+
+class UserUpdate(BaseModel):
+    name: str = Field(..., min_length=2, max_length=100)
+    email: EmailStr
+    age: int | None = Field(default=None, ge=0, le=120)
+    is_active: bool = True
+
+
+class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    email: EmailStr
+    age: int | None
+    is_active: bool
+    created_at: datetime
