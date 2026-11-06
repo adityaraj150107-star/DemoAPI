@@ -1,5 +1,5 @@
-"""Pydantic v2 schemas for the Users API."""
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+"""Pydantic v2 request and response schemas for the Users API."""
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, model_validator
 
 
 class UserBase(BaseModel):
@@ -17,7 +17,8 @@ class UserCreate(UserBase):
 
 
 class UserUpdate(BaseModel):
-    """Request schema for partial user updates (PATCH)."""
+    """Request schema for partial updates; omitted fields remain unchanged."""
+
     model_config = ConfigDict(extra="forbid")
 
     name: str | None = Field(default=None, min_length=2, max_length=50)
@@ -25,6 +26,15 @@ class UserUpdate(BaseModel):
     age: int | None = Field(default=None, ge=18, le=100)
     phone: str | None = Field(default=None, min_length=10, max_length=15)
     is_active: bool | None = None
+
+    @model_validator(mode="after")
+    def reject_null_for_non_nullable_fields(self):
+        # Optional means a field may be omitted, not set to null.
+        # Phone is the only field that is nullable in the user model.
+        for field_name in self.model_fields_set:
+            if field_name != "phone" and getattr(self, field_name) is None:
+                raise ValueError(f"{field_name} cannot be null.")
+        return self
 
 
 class UserResponse(UserBase):
