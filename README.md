@@ -18,13 +18,13 @@ Building REST APIs step by step — from development tools and Git fundamentals 
 
 ---
 
-## 👋 About This Repository
+## About This Repository
 
 **DemoAPI** is my hands-on internship learning repository. It documents my progress through practical daily tasks and demonstrates how I build, structure, test, and improve backend applications using Python and FastAPI.
 
 The repository is organized day by day so that each stage of learning is easy to explore. It includes task notes, implementation code, database scripts, API endpoints, and setup instructions.
 
-## 🎯 Learning Journey at a Glance
+## Learning Journey at a Glance
 
 | Day | Focus Area | What I Worked On |
 |:---:|---|---|
@@ -36,9 +36,9 @@ The repository is organized day by day so that each stage of learning is easy to
 
 ---
 
-# 📚 Internship Work — Day by Day
+# Internship Work — Day by Day
 
-## 🟢 Day 01 — Development Tools Setup & Git Fundamentals
+## Day 01 — Development Tools Setup & Git Fundamentals
 
 **Goal:** Prepare the development environment and understand how to manage code using Git and GitHub.
 
@@ -65,7 +65,7 @@ git pull
 
 ---
 
-## 🐳 Day 02 — Docker Development Environment
+## Day 02 — Docker Development Environment
 
 **Goal:** Understand containerized development and run a small FastAPI service with Docker.
 
@@ -99,7 +99,7 @@ docker compose down
 
 ---
 
-## ⚡ Day 03 — FastAPI Users CRUD API
+## Day 03 — FastAPI Users CRUD API
 
 **Goal:** Build REST API endpoints and understand the CRUD workflow using FastAPI.
 
@@ -130,7 +130,7 @@ docker compose down
 
 ---
 
-## 🧩 Day 04 — Pydantic V2 Request & Response Models
+## Day 04 — Pydantic V2 Request & Response Models
 
 **Goal:** Add structured data validation to the Users API using Pydantic V2.
 
@@ -161,11 +161,11 @@ docker compose down
 
 ---
 
-## 🐘 Day 05 — PostgreSQL & SQLAlchemy ORM with FastAPI
+## Day 05 — PostgreSQL & SQLAlchemy ORM with FastAPI
 
 **Goal:** Work with a relational database and integrate PostgreSQL into a FastAPI application using SQLAlchemy ORM.
 
-Day 05 is divided into two practical tasks.
+Day 05 is organized into one folder with two clearly separated tasks.
 
 ### Task 1 — PostgreSQL Database & SQL Queries
 
@@ -208,7 +208,7 @@ Day 05 is divided into two practical tasks.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 DemoAPI/
@@ -216,7 +216,6 @@ DemoAPI/
 ├── app/
 │   ├── __init__.py
 │   ├── main.py
-│   │
 │   ├── api/
 │   │   ├── __init__.py
 │   │   ├── v1/
@@ -224,13 +223,11 @@ DemoAPI/
 │   │   │   └── endpoints/
 │   │   │       ├── __init__.py
 │   │   │       └── users.py
-│   │   │
 │   │   └── v2/
 │   │       ├── __init__.py
 │   │       └── endpoints/
 │   │           ├── __init__.py
 │   │           └── users.py
-│   │
 │   └── models/
 │       ├── __init__.py
 │       └── user.py
@@ -240,20 +237,16 @@ DemoAPI/
 │
 ├── Day-01-Tools-Setup-and-Git/
 │   └── README.md
-│
 ├── Day-02-Docker-Development-Environment/
 │   └── README.md
-│
 ├── Day-04-Pydantic-V2-Users-Models/
 │   └── README.md
 │
 ├── Day-05-FastAPI-PostgreSQL-SQLAlchemy/
 │   ├── README.md
-│   │
 │   ├── Task-01-PostgreSQL/
 │   │   ├── README.md
 │   │   └── users_queries.sql
-│   │
 │   └── Task-02-SQLAlchemy-CRUD/
 │       ├── README.md
 │       ├── requirements.txt
@@ -282,7 +275,7 @@ DemoAPI/
 - `Day-05/.../Task-02-SQLAlchemy-CRUD/app/` — separate V3 FastAPI application using PostgreSQL and SQLAlchemy ORM.
 - `Dockerfile` and `docker-compose.yml` — container configuration for the main API.
 
-## ▶️ Run the Main FastAPI Application
+## Run the Main FastAPI Application
 
 ### 1. Clone the repository
 ```bash
@@ -293,7 +286,7 @@ cd DemoAPI
 ### 2. Create and activate a virtual environment (Windows PowerShell)
 ```powershell
 py -m venv .venv
-.\.venv\Scripts\Activate.ps1
+.\\.venv\\Scripts\\Activate.ps1
 pip install -r requirements.txt
 ```
 
@@ -307,7 +300,7 @@ uvicorn app.main:app --reload
 - **ReDoc:** http://127.0.0.1:8000/redoc
 - **Health check:** http://127.0.0.1:8000/health
 
-## 🧰 Technologies Used
+## Technologies Used
 
 <p>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python">
@@ -329,7 +322,7 @@ uvicorn app.main:app --reload
 - Postman
 - Swagger UI
 
-## 📈 Key Learning Outcomes
+## Key Learning Outcomes
 
 Through these practical tasks, I am building experience in:
 
@@ -342,24 +335,13 @@ Through these practical tasks, I am building experience in:
 - Writing SQL queries and managing relational data with PostgreSQL.
 - Connecting FastAPI applications to databases using SQLAlchemy ORM.
 
-## 👨‍💻 Author
+## Author
 
 **Aditya Rajput**  
 BCA Student | Backend Development & AI/ML Enthusiast
 
 - GitHub: [adityaraj150107-star](https://github.com/adityaraj150107-star)
 - LinkedIn: [Aditya Rajput](https://www.linkedin.com/in/aditya-rajput-105768409)
-
----## 📋 Task Status
-
-- `pending`
-- `in_progress`
-- `done`
-
-## 👤 User Status
-
-- `active`
-- `inactive`
 
 ---
 
