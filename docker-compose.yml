@@ -1,7 +1,0 @@
-services:
-  demo-api:
-    build: .
-    container_name: demo-api
-    ports:
-      - "8000:8000"
-    restart: unless-stopped
