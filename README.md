@@ -350,17 +350,7 @@ BCA Student | Backend Development & AI/ML Enthusiast
 - GitHub: [adityaraj150107-star](https://github.com/adityaraj150107-star)
 - LinkedIn: [Aditya Rajput](https://www.linkedin.com/in/aditya-rajput-105768409)
 
----
-
-<div align="center">
-
-**Thanks for visiting DemoAPI!**
-
-⭐ If you find this learning repository useful, feel free to explore the code and give it a star.
-
-</div>
-
-## 📋 Task Status
+---## 📋 Task Status
 
 - `pending`
 - `in_progress`
@@ -370,3 +360,13 @@ BCA Student | Backend Development & AI/ML Enthusiast
 
 - `active`
 - `inactive`
+
+---
+
+<div align="center">
+
+**Thanks for visiting DemoAPI!**
+
+⭐ If you find this learning repository useful, feel free to explore the code and give it a star.
+
+</div>
