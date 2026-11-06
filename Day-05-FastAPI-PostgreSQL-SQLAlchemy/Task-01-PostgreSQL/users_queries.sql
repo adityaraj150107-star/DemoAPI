@@ -14,6 +14,15 @@ CREATE TABLE IF NOT EXISTS users (
     created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Keep an existing users table compatible with the SQLAlchemy V3 model.
+-- These statements are safe if the columns already exist.
+ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS age INTEGER
+        CHECK (age IS NULL OR age BETWEEN 0 AND 120);
+
+ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS is_active BOOLEAN NOT NULL DEFAULT TRUE;
+
 -- INSERT: sample records. Safe to rerun because email is unique.
 INSERT INTO users (name, email, age, is_active)
 VALUES
