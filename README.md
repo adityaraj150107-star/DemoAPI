@@ -208,30 +208,63 @@ Day 05 is divided into two practical tasks.
 
 ---
 
-## 🏗️ Repository Structure
+## 📁 Project Structure
 
 ```text
 DemoAPI/
 │
 ├── app/
+│   ├── __init__.py
 │   ├── main.py
-│   ├── models/
-│   └── api/
-│       ├── v1/
-│       │   └── endpoints/
-│       └── v2/
-│           └── endpoints/
+│   │
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── v1/
+│   │   │   ├── __init__.py
+│   │   │   └── endpoints/
+│   │   │       ├── __init__.py
+│   │   │       └── users.py
+│   │   │
+│   │   └── v2/
+│   │       ├── __init__.py
+│   │       └── endpoints/
+│   │           ├── __init__.py
+│   │           └── users.py
+│   │
+│   └── models/
+│       ├── __init__.py
+│       └── user.py
 │
 ├── postman/
 │   └── DemoAPI.postman_collection.json
 │
 ├── Day-01-Tools-Setup-and-Git/
+│   └── README.md
+│
 ├── Day-02-Docker-Development-Environment/
+│   └── README.md
+│
 ├── Day-04-Pydantic-V2-Users-Models/
+│   └── README.md
 │
 ├── Day-05-FastAPI-PostgreSQL-SQLAlchemy/
+│   ├── README.md
+│   │
 │   ├── Task-01-PostgreSQL/
+│   │   ├── README.md
+│   │   └── users_queries.sql
+│   │
 │   └── Task-02-SQLAlchemy-CRUD/
+│       ├── README.md
+│       ├── requirements.txt
+│       ├── .env.example
+│       └── app/
+│           ├── __init__.py
+│           ├── main.py
+│           ├── database.py
+│           ├── models.py
+│           ├── schemas.py
+│           └── crud.py
 │
 ├── Dockerfile
 ├── docker-compose.yml
@@ -239,7 +272,15 @@ DemoAPI/
 └── README.md
 ```
 
-The root `app/` contains the V1 and V2 learning API. Day 05 contains a separate V3 application that connects to PostgreSQL using SQLAlchemy.
+**Project organization:**
+- `app/` — main FastAPI application containing the V1 and V2 Users APIs.
+- `app/api/v1/` — V1 Users CRUD endpoints using in-memory storage.
+- `app/api/v2/` — V2 Users CRUD endpoints with Pydantic V2 validation.
+- `app/models/user.py` — Pydantic request and response models.
+- `postman/` — Postman collection for testing the health check and Users APIs.
+- `Day-01`, `Day-02`, `Day-04`, and `Day-05` — day-wise internship task documentation and implementations.
+- `Day-05/.../Task-02-SQLAlchemy-CRUD/app/` — separate V3 FastAPI application using PostgreSQL and SQLAlchemy ORM.
+- `Dockerfile` and `docker-compose.yml` — container configuration for the main API.
 
 ## ▶️ Run the Main FastAPI Application
 
@@ -266,18 +307,27 @@ uvicorn app.main:app --reload
 - **ReDoc:** http://127.0.0.1:8000/redoc
 - **Health check:** http://127.0.0.1:8000/health
 
-## 🧰 Technology Stack
+## 🧰 Technologies Used
 
-| Area | Technologies |
-|---|---|
-| Programming Language | Python |
-| Backend Framework | FastAPI |
-| Data Validation | Pydantic V2 |
-| Database | PostgreSQL |
-| ORM & Driver | SQLAlchemy 2.x, Psycopg |
-| Containerization | Docker, Docker Compose |
-| API Testing | Swagger UI, Postman |
-| Version Control | Git, GitHub |
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="40" alt="FastAPI">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="40" alt="PostgreSQL">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" alt="Git">
+</p>
+
+- Python
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- Pydantic V2
+- Docker
+- Docker Compose
+- Uvicorn
+- Git & GitHub
+- Postman
+- Swagger UI
 
 ## 📈 Key Learning Outcomes
 
@@ -309,3 +359,14 @@ BCA Student | Backend Development & AI/ML Enthusiast
 ⭐ If you find this learning repository useful, feel free to explore the code and give it a star.
 
 </div>
+
+## 📋 Task Status
+
+- `pending`
+- `in_progress`
+- `done`
+
+## 👤 User Status
+
+- `active`
+- `inactive`
