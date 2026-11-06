@@ -1,33 +1,261 @@
 <div align="center">
 
-# DemoAPI
+# <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="34" height="34" alt="FastAPI"> DemoAPI — FastAPI Internship Work
 
-### FastAPI Internship Practice — Day 01 to Day 05
+### Day 01 → Day 05 | Backend Development Learning & Implementation
 
-A structured, hands-on backend development repository. Each day has its own application, dependencies, instructions, and task documentation.
+A day-wise, hands-on backend development repository covering developer setup, Git & GitHub, Docker, REST API development, Pydantic V2 validation, PostgreSQL, and SQLAlchemy ORM.
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-009688?logo=fastapi&logoColor=white)
-![Pydantic](https://img.shields.io/badge/Pydantic-V2-E92063)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white)
-![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?logo=sqlalchemy&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&logoColor=white)
+<p>
+  <a href="https://github.com/adityaraj150107-star/DemoAPI"><img src="https://img.shields.io/badge/Repository-DemoAPI-181717?logo=github" alt="GitHub repository"></a>
+  <img src="https://img.shields.io/badge/Progress-Day%2001--05-blue" alt="Day 01 to Day 05">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FastAPI-REST%20API-009688?logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/Pydantic-V2-E92063" alt="Pydantic V2">
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
+  <img src="https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&logoColor=white" alt="Docker">
+</p>
 
 </div>
 
 ---
 
-## Learning roadmap
+## 👨‍💻 About This Repository
 
-| Day | Topic | Main deliverable |
-|:---:|---|---|
-| 01 | Tools Setup & Git | Development setup and Git workflow notes |
-| 02 | Docker Development Environment | Containerized FastAPI health-check API |
-| 03 | FastAPI CRUD | Standalone Users CRUD REST API |
-| 04 | Pydantic V2 | Typed request/response models and validation |
-| 05 | PostgreSQL & SQLAlchemy | SQL practice and database-backed V3 CRUD API |
+**DemoAPI** is my practical backend development learning repository. It documents the work completed across five learning days, with each day organized into a separate folder so the code, dependencies, instructions, and deliverables remain easy to understand and maintain.
 
-## Repository structure
+The repository follows a progressive learning path:
+
+**Development Setup → Docker → FastAPI CRUD → Pydantic V2 → PostgreSQL & SQLAlchemy**
+
+The focus is on understanding how backend APIs are designed, validated, documented, containerized, and connected to a relational database.
+
+---
+
+## 🧰 Technologies & Tools
+
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="48" height="48" alt="Python" title="Python">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="48" height="48" alt="FastAPI" title="FastAPI">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pydantic/pydantic-original.svg" width="48" height="48" alt="Pydantic" title="Pydantic">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="48" height="48" alt="PostgreSQL" title="PostgreSQL">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="48" height="48" alt="SQLAlchemy" title="SQLAlchemy">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="48" height="48" alt="Docker" title="Docker">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="48" height="48" alt="Git" title="Git">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="48" height="48" alt="GitHub" title="GitHub">
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="48" height="48" alt="VS Code" title="Visual Studio Code">
+</p>
+
+| Technology | Purpose in this repository |
+|---|---|
+| **Python** | Main programming language for backend development |
+| **FastAPI** | Building REST APIs and route handling |
+| **Pydantic V2** | Request validation, response schemas, and data constraints |
+| **PostgreSQL** | Relational database for persistent user records |
+| **SQLAlchemy ORM** | Database models, sessions, and CRUD operations |
+| **Psycopg** | PostgreSQL driver for Python |
+| **Docker** | Packaging the API into a container |
+| **Docker Compose** | Defining and running the containerized application |
+| **Git & GitHub** | Version control and source code management |
+| **Uvicorn** | ASGI server for running FastAPI |
+| **Swagger UI / Postman** | API documentation and endpoint testing |
+| **Visual Studio Code** | Development environment |
+
+---
+
+## 🗓️ Day-wise Learning & Task Implementation
+
+### Day 01 — Tools Setup & Git Basics
+
+<kbd>FOUNDATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+
+**Objective:** Prepare the development environment and understand the Git/GitHub workflow used to manage project code.
+
+**Tasks & work**
+- Set up Python and Visual Studio Code.
+- Verify the development environment and terminal commands.
+- Understand Git repositories, working tree, staging area, and commits.
+- Practice `git init`, `git status`, `git add`, and `git commit`.
+- Understand remote repositories, `git push`, and `git pull`.
+- Organize the learning work in the DemoAPI GitHub repository.
+
+**Concepts learned:** Development environment, version control, repository, staging, commit history, remote origin, and GitHub.
+
+**Deliverable:** A configured development environment and a GitHub repository for maintaining the day-wise tasks.
+
+[Open Day 01 documentation →](Day-01-Tools-Setup-and-Git/README.md)
+
+---
+
+### Day 02 — Docker Development Environment
+
+<kbd>CONTAINERIZATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+
+**Objective:** Create a small FastAPI health-check API and run it inside a Docker container.
+
+**Tasks & work**
+- Learn Docker images, containers, Dockerfiles, and Docker Compose.
+- Create a FastAPI application with a `GET /health` endpoint.
+- Return a JSON health response: `{"status": "ok"}`.
+- Write a Dockerfile to build the application image.
+- Configure Docker Compose to start the API.
+- Build and run the container, then test the endpoint using a browser or Postman.
+
+**Key files:** `app/main.py`, `Dockerfile`, `docker-compose.yml`, and `requirements.txt`.
+
+**Expected API response**
+```json
+{
+  "status": "ok"
+}
+```
+
+**Concepts learned:** Containerization, image building, port mapping, container lifecycle, and Compose-based execution.
+
+[Open Day 02 documentation →](Day-02-Docker-Development-Environment/README.md)
+
+---
+
+### Day 03 — FastAPI Users CRUD API
+
+<kbd>REST API DEVELOPMENT</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+
+**Objective:** Build a Users REST API and understand the four fundamental CRUD operations.
+
+**Tasks & work**
+- Create a FastAPI application and organize API routes under the V1 endpoint.
+- Implement Create, Read, Update, and Delete operations for users.
+- Handle JSON request bodies and URL path parameters.
+- Generate user IDs and prevent duplicate email addresses.
+- Validate basic user fields and return meaningful HTTP errors.
+- Test the endpoints through Swagger UI.
+
+**CRUD endpoint summary**
+
+| Operation | Method | Endpoint |
+|---|---|---|
+| Create user | POST | `/api/v1/users` |
+| Get all users | GET | `/api/v1/all_users` |
+| Get user by ID | GET | `/api/v1/fetch/user/{user_id}` |
+| Update user | PUT | `/api/v1/user/{user_id}` |
+| Delete user | DELETE | `/api/v1/user/{user_id}` |
+
+**Concepts learned:** REST principles, HTTP methods, route parameters, request payloads, CRUD logic, status codes, and exception handling.
+
+**Storage note:** This Day 03 exercise uses in-memory storage. User records reset when the application restarts.
+
+[Open Day 03 documentation →](Day-03-FastAPI-CRUD/README.md)
+
+---
+
+### Day 04 — Pydantic V2 Request & Response Models
+
+<kbd>DATA VALIDATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+
+**Objective:** Create structured Pydantic V2 models for Users API requests and responses, with clear validation rules.
+
+**Tasks & work**
+- Create request models for user creation and updates.
+- Create response models to define consistent API output.
+- Apply required fields, default values, type annotations, and field constraints.
+- Validate email format and numeric boundaries.
+- Reject unexpected request fields.
+- Handle invalid payloads with clear validation responses.
+- Test valid and invalid requests through Swagger UI.
+
+**Models covered:** `UserCreate`, `UserUpdate`, `UserResponse`, `UsersListResponse`, and `MessageResponse`.
+
+**Example request**
+```json
+{
+  "name": "Aditya Raj",
+  "email": "aditya@example.com",
+  "age": 21,
+  "phone": "9876543210",
+  "is_active": true
+}
+```
+
+**Concepts learned:** Pydantic V2, schema design, `EmailStr`, `Field`, model configuration, validation, and response serialization.
+
+**Storage note:** Day 04 is a separate learning API using in-memory storage; PostgreSQL persistence is handled in Day 05.
+
+[Open Day 04 documentation →](Day-04-Pydantic-V2-Users-Models/README.md)
+
+---
+
+### Day 05 — PostgreSQL & SQLAlchemy CRUD
+
+<kbd>DATABASE INTEGRATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+
+**Objective:** Work with PostgreSQL directly using SQL queries and build a database-backed FastAPI Users CRUD API using SQLAlchemy ORM.
+
+Day 05 is divided into two separate tasks inside one Day 05 folder.
+
+#### Task 1 — PostgreSQL Database & SQL Queries
+
+**Work covered**
+- Connect to PostgreSQL using pgAdmin.
+- Create and use the `demoapi_day5` database.
+- Create the `users` table with suitable columns and constraints.
+- Insert sample users and retrieve records.
+- Practice filtering, sorting, updating, and deleting records.
+- Use aggregate queries such as `COUNT` and `GROUP BY`.
+
+**SQL concepts:** `CREATE TABLE`, `INSERT`, `SELECT`, `WHERE`, `ORDER BY`, `UPDATE`, `DELETE`, `COUNT`, and `GROUP BY`.
+
+[Open Task 1 — PostgreSQL →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-01-PostgreSQL/README.md)
+
+#### Task 2 — FastAPI V3 with SQLAlchemy ORM
+
+**Work covered**
+- Configure the PostgreSQL connection through environment variables.
+- Create a SQLAlchemy engine and session factory.
+- Define the User ORM model and database table.
+- Create Pydantic V2 schemas for API input and output.
+- Separate database CRUD functions from API route handlers.
+- Implement database-backed Create, Read, Update, and Delete operations.
+- Handle duplicate emails and missing user records.
+- Verify the API through Swagger UI.
+
+**V3 endpoint summary**
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/health` | API health check |
+| POST | `/api/v3/users/` | Create user |
+| GET | `/api/v3/users/` | List users |
+| GET | `/api/v3/users/{user_id}` | Get user by ID |
+| PUT | `/api/v3/users/{user_id}` | Update user |
+| DELETE | `/api/v3/users/{user_id}` | Delete user |
+
+**Concepts learned:** Relational database connection, SQLAlchemy ORM, database sessions, model mapping, Pydantic schemas, dependency injection, and persistent CRUD operations.
+
+[Open Task 2 — SQLAlchemy CRUD →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
+
+#### User & Task Status Reference
+
+| Entity | Status value | Meaning |
+|---|---|---|
+| User | `active` | User account is enabled |
+| User | `inactive` | User account is disabled |
+| Task | `in_progress` | Task is currently being worked on |
+| Task | `done` | Task has been completed |
+
+**Implementation note:** The current Day 05 SQLAlchemy assignment implements the Users table and Users CRUD endpoints. The task status values above document the requested task workflow; a separate Tasks table/API is not included in the current Day 05 implementation.
+
+---
+
+## 📁 Repository Architecture
 
 ```text
 DemoAPI/
@@ -62,6 +290,7 @@ DemoAPI/
 │   ├── Task-01-PostgreSQL/
 │   │   ├── users_queries.sql
 │   │   └── README.md
+│   │
 │   ├── Task-02-SQLAlchemy-CRUD/
 │   │   ├── app/
 │   │   │   ├── main.py
@@ -72,55 +301,136 @@ DemoAPI/
 │   │   ├── .env.example
 │   │   ├── requirements.txt
 │   │   └── README.md
+│   │
 │   └── README.md
 │
 └── README.md
 ```
 
-## How to use this repository
+---
 
-1. Open the day folder you want to study.
-2. Read that folder's README before running commands.
-3. Create a virtual environment inside that day folder.
-4. Install that day's own `requirements.txt`.
-5. Run the application using the command documented for that day.
-6. Test endpoints in Swagger UI and save your own screenshots.
+## ⚙️ Installation & Running Guide
 
-Each day is a separate learning project. This avoids dependency conflicts and makes it easy to run one task without affecting another.
+Each day is an independent learning project with its own dependencies. Run the commands from the corresponding day/task folder.
 
-## Quick links
+### 1. Clone the repository
 
-- [Day 01 — Tools Setup & Git](Day-01-Tools-Setup-and-Git/README.md)
-- [Day 02 — Docker Development Environment](Day-02-Docker-Development-Environment/README.md)
-- [Day 03 — FastAPI CRUD](Day-03-FastAPI-CRUD/README.md)
-- [Day 04 — Pydantic V2 Users Models](Day-04-Pydantic-V2-Users-Models/README.md)
-- [Day 05 — PostgreSQL & SQLAlchemy](Day-05-FastAPI-PostgreSQL-SQLAlchemy/README.md)
+```bash
+git clone https://github.com/adityaraj150107-star/DemoAPI.git
+cd DemoAPI
+```
 
-## Technology stack
+### 2. Open the required Day folder
 
-- Python
-- FastAPI
-- Pydantic V2
-- PostgreSQL
-- SQLAlchemy ORM
-- Psycopg
-- Docker and Docker Compose
-- Git and GitHub
-- Postman and Swagger UI
+Example for Day 05 SQLAlchemy:
 
-## Important notes
+```powershell
+cd Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD
+```
 
-- Day 03 uses temporary in-memory storage; its records reset when the app restarts.
-- Day 04 is a separate Pydantic V2 learning application and also uses in-memory storage.
-- Day 05 Task 1 contains PostgreSQL SQL practice.
-- Day 05 Task 2 is a separate FastAPI V3 application connected to PostgreSQL through SQLAlchemy.
-- Never commit real passwords or API secrets. Use the provided `.env.example` as a template and keep your local `.env` file private.
-- Documentation and code are provided for learning. Run and verify each project locally before submitting it.
+### 3. Create and activate a virtual environment
 
-## Author
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+### 4. Install that task's dependencies
+
+```powershell
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 5. Configure PostgreSQL for Day 05 Task 2
+
+Create the `demoapi_day5` database, copy `.env.example` to `.env`, and update the connection details for your local PostgreSQL server.
+
+Example connection format:
+
+```env
+DATABASE_URL=postgresql+psycopg://postgres:YOUR_PASSWORD@localhost:5432/demoapi_day5
+```
+
+Keep your actual `.env` file private. Never commit database passwords or API secrets.
+
+### 6. Run the FastAPI application
+
+For Day 03 or Day 04, run from that day's folder:
+
+```powershell
+uvicorn app.main:app --reload
+```
+
+For Day 05 Task 2, use the same command from the Task 2 folder.
+
+For Day 02 Docker execution, follow its README and use:
+
+```powershell
+docker compose up --build
+```
+
+---
+
+## 📖 API Documentation & Testing
+
+When a FastAPI application is running locally:
+
+| Tool | URL | Use |
+|---|---|---|
+| Swagger UI | http://127.0.0.1:8000/docs | Explore and test API endpoints |
+| ReDoc | http://127.0.0.1:8000/redoc | Read generated API documentation |
+| Health endpoint | http://127.0.0.1:8000/health | Check service health where implemented |
+| Postman | Configure request to localhost:8000 | Send and verify HTTP requests |
+
+Use the README inside each day folder for the exact routes and request examples.
+
+---
+
+## 📚 Key Learning Outcomes
+
+By working through these five days, the repository demonstrates practice with:
+
+- Setting up a Python backend development environment.
+- Managing source code using Git and GitHub.
+- Understanding Docker images, containers, and Compose.
+- Designing RESTful APIs with FastAPI.
+- Implementing CRUD operations and HTTP error handling.
+- Creating and validating request/response schemas using Pydantic V2.
+- Writing PostgreSQL queries for database operations.
+- Connecting FastAPI to PostgreSQL using SQLAlchemy ORM.
+- Organizing backend code into routes, schemas, models, database, and CRUD layers.
+- Testing APIs through Swagger UI and Postman.
+
+---
+
+## 🔐 Security & Project Notes
+
+- Each day has its own project folder and dependency file to reduce dependency conflicts.
+- Day 03 and Day 04 use in-memory data for learning; data resets when their application restarts.
+- Day 05 Task 2 uses PostgreSQL for persistent user records.
+- Use `.env.example` as a template and keep local secrets out of Git.
+- The current Day 05 SQLAlchemy API manages Users. Task status labels are documented separately and do not imply a Tasks CRUD API.
+- Run and test each application locally before treating a task as completed.
+
+---
+
+## 👤 Author
 
 **Aditya Rajput**  
-BCA Student | Backend Development & AI/ML Enthusiast
+BCA Student | Backend Development | Python & FastAPI Learner
 
-- GitHub: [adityaraj150107-star](https://github.com/adityaraj150107-star)
-- LinkedIn: [Aditya Rajput](https://www.linkedin.com/in/aditya-rajput-105768409)
+<p>
+  <a href="https://github.com/adityaraj150107-star"><img src="https://img.shields.io/badge/GitHub-adityaraj150107--star-181717?logo=github" alt="GitHub"></a>
+  <a href="https://www.linkedin.com/in/aditya-rajput-105768409"><img src="https://img.shields.io/badge/LinkedIn-Aditya%20Rajput-0A66C2?logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+</p>
+
+---
+
+<div align="center">
+
+**Thanks for visiting DemoAPI!**
+
+*Learning by building, one day at a time.*
+
+</div>
