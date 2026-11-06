@@ -33,42 +33,24 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ---
 
-## 🧰 Technologies & Tools
+## 🚀 Technologies Used
 
-<p align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="48" height="48" alt="Python" title="Python">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="48" height="48" alt="FastAPI" title="FastAPI">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pydantic/pydantic-original.svg" width="48" height="48" alt="Pydantic" title="Pydantic">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="48" height="48" alt="PostgreSQL" title="PostgreSQL">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="48" height="48" alt="SQLAlchemy" title="SQLAlchemy">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="48" height="48" alt="Docker" title="Docker">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="48" height="48" alt="Git" title="Git">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="48" height="48" alt="GitHub" title="GitHub">
-  &nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="48" height="48" alt="VS Code" title="Visual Studio Code">
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="40" alt="FastAPI">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="40" alt="PostgreSQL">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" alt="Git">
 </p>
 
-| Technology | Purpose in this repository |
-|---|---|
-| **Python** | Main programming language for backend development |
-| **FastAPI** | Building REST APIs and route handling |
-| **Pydantic V2** | Request validation, response schemas, and data constraints |
-| **PostgreSQL** | Relational database for persistent user records |
-| **SQLAlchemy ORM** | Database models, sessions, and CRUD operations |
-| **Psycopg** | PostgreSQL driver for Python |
-| **Docker** | Packaging the API into a container |
-| **Docker Compose** | Defining and running the containerized application |
-| **Git & GitHub** | Version control and source code management |
-| **Uvicorn** | ASGI server for running FastAPI |
-| **Swagger UI / Postman** | API documentation and endpoint testing |
-| **Visual Studio Code** | Development environment |
+- Python
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- Pydantic
+- Docker
+- Docker Compose
+- Uvicorn
 
 ---
 
@@ -76,7 +58,7 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ### Day 01 — Tools Setup & Git Basics
 
-<kbd>FOUNDATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+<kbd>FOUNDATION</kbd>
 
 **Objective:** Prepare the development environment and understand the Git/GitHub workflow used to manage project code.
 
@@ -98,7 +80,7 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ### Day 02 — Docker Development Environment
 
-<kbd>CONTAINERIZATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+<kbd>CONTAINERIZATION</kbd>
 
 **Objective:** Create a small FastAPI health-check API and run it inside a Docker container.
 
@@ -127,7 +109,7 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ### Day 03 — FastAPI Users CRUD API
 
-<kbd>REST API DEVELOPMENT</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+<kbd>REST API DEVELOPMENT</kbd>
 
 **Objective:** Build a Users REST API and understand the four fundamental CRUD operations.
 
@@ -159,7 +141,7 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ### Day 04 — Pydantic V2 Request & Response Models
 
-<kbd>DATA VALIDATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+<kbd>DATA VALIDATION</kbd>
 
 **Objective:** Create structured Pydantic V2 models for Users API requests and responses, with clear validation rules.
 
@@ -195,7 +177,7 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ### Day 05 — PostgreSQL & SQLAlchemy CRUD
 
-<kbd>DATABASE INTEGRATION</kbd> <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="In Progress">
+<kbd>DATABASE INTEGRATION</kbd>
 
 **Objective:** Work with PostgreSQL directly using SQL queries and build a database-backed FastAPI Users CRUD API using SQLAlchemy ORM.
 
@@ -242,16 +224,7 @@ Day 05 is divided into two separate tasks inside one Day 05 folder.
 
 [Open Task 2 — SQLAlchemy CRUD →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
 
-#### User & Task Status Reference
-
-| Entity | Status value | Meaning |
-|---|---|---|
-| User | `active` | User account is enabled |
-| User | `inactive` | User account is disabled |
-| Task | `in_progress` | Task is currently being worked on |
-| Task | `done` | Task has been completed |
-
-**Implementation note:** The current Day 05 SQLAlchemy assignment implements the Users table and Users CRUD endpoints. The task status values above document the requested task workflow; a separate Tasks table/API is not included in the current Day 05 implementation.
+**Database note:** The current Day 05 SQLAlchemy task focuses on the Users table and its CRUD operations. The status values used in the project are documented in the dedicated status sections below.
 
 ---
 
@@ -412,6 +385,19 @@ By working through these five days, the repository demonstrates practice with:
 - Use `.env.example` as a template and keep local secrets out of Git.
 - The current Day 05 SQLAlchemy API manages Users. Task status labels are documented separately and do not imply a Tasks CRUD API.
 - Run and test each application locally before treating a task as completed.
+
+---
+
+## 📋 Task Status
+
+- `pending`
+- `in_progress`
+- `done`
+
+## 👤 User Status
+
+- `active`
+- `inactive`
 
 ---
 
