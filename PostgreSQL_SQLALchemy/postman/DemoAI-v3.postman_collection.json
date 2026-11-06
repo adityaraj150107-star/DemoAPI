@@ -1,0 +1,157 @@
+{
+  "info": {
+    "name": "DemoAI v3 - PMS Portal API",
+    "_postman_id": "b3e0f16c-9d91-4e51-9a0a-5d3e7c2d5f31",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "user_id",
+      "value": "1"
+    },
+    {
+      "key": "task_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/"
+      }
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create user",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Aarav Sharma\",\n  \"email\": \"aarav@example.com\",\n  \"phone\": \"9876543210\",\n  \"status\": \"active\"\n}"
+            },
+            "url": "{{base_url}}/users"
+          }
+        },
+        {
+          "name": "List users",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/users"
+          }
+        },
+        {
+          "name": "Get user with tasks",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/users/{{user_id}}"
+          }
+        },
+        {
+          "name": "Update user",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"inactive\"\n}"
+            },
+            "url": "{{base_url}}/users/{{user_id}}"
+          }
+        },
+        {
+          "name": "Delete user",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/users/{{user_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Create task assigned to user 1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Build login API\",\n  \"description\": \"Create and test login endpoint\",\n  \"status\": \"pending\",\n  \"user_id\": 1\n}"
+            },
+            "url": "{{base_url}}/tasks"
+          }
+        },
+        {
+          "name": "List all tasks",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/tasks"
+          }
+        },
+        {
+          "name": "Filter pending tasks",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/tasks?status=pending"
+          }
+        },
+        {
+          "name": "Get task",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/tasks/{{task_id}}"
+          }
+        },
+        {
+          "name": "Update task status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in progress\"\n}"
+            },
+            "url": "{{base_url}}/tasks/{{task_id}}"
+          }
+        },
+        {
+          "name": "Delete task",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/tasks/{{task_id}}"
+          }
+        }
+      ]
+    }
+  ]
+}
