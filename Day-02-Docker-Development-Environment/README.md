@@ -1,43 +1,64 @@
 # Day 02 — Docker Development Environment
 
 ## Objective
-Create and run a small FastAPI demo service inside a Docker container.
+Build a small FastAPI health-check service, package it with Docker, and run it using Docker Compose.
 
-## Tasks
-- [ ] Understand Docker images, containers, Dockerfile, and Docker Compose.
-- [ ] Install and verify Docker Desktop.
-- [ ] Create a FastAPI demo endpoint: `GET /health`.
-- [ ] Return a JSON response: `{"status": "ok"}`.
-- [ ] Create a Dockerfile.
-- [ ] Configure Docker Compose.
-- [ ] Build and start the service using Docker.
-- [ ] Test the health endpoint using Postman.
-- [ ] Capture the successful Postman response.
+## Project structure
+```text
+Day-02-Docker-Development-Environment/
+├── app/
+│   └── main.py
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
 
-## Useful commands
+## API
+- Method: `GET`
+- Endpoint: `/health`
+- Expected JSON: `{"status": "ok"}`
+
+## Run without Docker (Windows PowerShell)
+Run from this folder:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --app-dir app --reload
+```
+
+Open http://127.0.0.1:8000/health and http://127.0.0.1:8000/docs.
+
+## Run with Docker
+Make sure Docker Desktop is running, then run from this folder:
 
 ```powershell
 docker --version
 docker compose version
 docker compose up --build
+```
+
+Test http://localhost:8000/health using a browser or Postman.
+
+Stop the container:
+
+```powershell
 docker compose down
 ```
 
-## Expected health response
+## Concepts covered
+- Image: a packaged application template.
+- Container: a running instance of an image.
+- Dockerfile: instructions used to build the image.
+- Docker Compose: configuration for running the service.
 
-```json
-{
-  "status": "ok"
-}
-```
+## Submission checklist
+- [ ] Docker Desktop installed and running.
+- [ ] FastAPI health endpoint returns `{"status": "ok"}`.
+- [ ] Docker image builds successfully.
+- [ ] Container starts successfully with Docker Compose.
+- [ ] Postman response screenshot captured.
 
-## Deliverables
-- FastAPI demo API.
-- Dockerfile and Docker Compose configuration.
-- Successful container run.
-- Postman health-check screenshot.
-
-## Notes
-The main application files are maintained in the repository root and `app/`. This folder records the work completed for this day.
-
-**Status:** Documentation structure created. Verify each task locally before marking it complete.
+Only mark checklist items complete after verifying them on your computer.
