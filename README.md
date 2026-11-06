@@ -171,6 +171,6 @@ Work is documented day by day. Each folder contains the objective, task checklis
 | Day 01 | Tools Setup & Git Basics | [Open Day 01](Day-01-Tools-Setup-and-Git/README.md) |
 | Day 02 | Docker Development Environment | [Open Day 02](Day-02-Docker-Development-Environment/README.md) |
 | Day 03 | FastAPI CRUD Operations | [Open Day 03](Day-03-FastAPI-Pydantic-V2-Users-API/README.md) |
-| Day 04 | Pydantic V2 Request & Response Models | [Open Day 04](Day-04-Pydantic-V2-Users-Models/README.md) |
+| Day 04 | Pydantic V2 Request & Response Models | [Open Day 04](Day-04-Pydantic-V2-Users-Models/README.md) |\n| Day 05 | PostgreSQL + SQLAlchemy CRUD (FastAPI V3) | [Open Day 05](Day-05-FastAPI-PostgreSQL-SQLAlchemy/README.md) |
 
 > **Note:** These folders organize task documentation. The runnable application remains in `app/`, with V1 and V2 kept side by side. Check off tasks only after completing and verifying them.
