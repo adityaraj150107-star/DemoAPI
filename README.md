@@ -175,11 +175,11 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ---
 
-### Day 05 — PostgreSQL & SQLAlchemy CRUD
+### Day 05 — PostgreSQL, JWT Authentication & Task Management
 
 <kbd>DATABASE INTEGRATION</kbd>
 
-**Objective:** Work with PostgreSQL directly using SQL queries and build a database-backed FastAPI Users CRUD API using SQLAlchemy ORM.
+**Objective:** Practice PostgreSQL and build a database-backed FastAPI task manager with JWT authentication and teacher/student permissions.
 
 Day 05 is divided into two separate tasks inside one Day 05 folder.
 
@@ -197,34 +197,31 @@ Day 05 is divided into two separate tasks inside one Day 05 folder.
 
 [Open Task 1 — PostgreSQL →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-01-PostgreSQL/README.md)
 
-#### Task 2 — FastAPI V3 with SQLAlchemy ORM
+#### Task 2 — FastAPI Task Manager with SQLAlchemy ORM
 
 **Work covered**
 - Configure the PostgreSQL connection through environment variables.
 - Create a SQLAlchemy engine and session factory.
-- Define the User ORM model and database table.
-- Create Pydantic V2 schemas for API input and output.
-- Separate database CRUD functions from API route handlers.
-- Implement database-backed Create, Read, Update, and Delete operations.
-- Handle duplicate emails and missing user records.
-- Verify the API through Swagger UI.
+- Add users, hashed passwords, roles, tasks, and revocable refresh-token sessions.
+- Implement login, logout, token refresh, and protected FastAPI dependencies.
+- Restrict task management, user visibility, and progress reporting by role.
+- Test API behavior in pytest and the supplied Postman collection.
 
-**V3 endpoint summary**
+**Authentication and task endpoints**
 
 | Method | Endpoint | Description |
 |---|---|---|
 | GET | `/health` | API health check |
-| POST | `/api/v3/users/` | Create user |
-| GET | `/api/v3/users/` | List users |
-| GET | `/api/v3/users/{user_id}` | Get user by ID |
-| PUT | `/api/v3/users/{user_id}` | Update user |
-| DELETE | `/api/v3/users/{user_id}` | Delete user |
+| POST | `/auth/register`, `/auth/login`, `/auth/refresh`, `/auth/logout` | Authentication/session lifecycle |
+| GET | `/auth/me` | Current user's profile |
+| POST/GET/PATCH/DELETE | `/api/v3/tasks` | Role-protected task management |
+| GET | `/api/v3/progress` | Teacher-only progress report |
 
-**Concepts learned:** Relational database connection, SQLAlchemy ORM, database sessions, model mapping, Pydantic schemas, dependency injection, and persistent CRUD operations.
+**Concepts learned:** PostgreSQL, SQLAlchemy ORM, JWT access/refresh tokens, Argon2 password hashing, session revocation, authentication dependencies, RBAC, and 401 vs 403 errors.
 
-[Open Task 2 — SQLAlchemy CRUD →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
+[Open Task 2 — Authenticated Task Manager →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
 
-**Database note:** The current Day 05 SQLAlchemy task focuses on the Users table and its CRUD operations. The status values used in the project are documented in the dedicated status sections below.
+**Database note:** PostgreSQL is required; the task README also documents using Supabase PostgreSQL when local PostgreSQL is unavailable. The seed command provisions a teacher and student from private environment variables.
 
 ---
 
@@ -268,9 +265,14 @@ DemoAPI/
 │   │   ├── app/
 │   │   │   ├── main.py
 │   │   │   ├── database.py
+│   │   │   ├── auth.py
+│   │   │   ├── dependencies.py
 │   │   │   ├── models.py
 │   │   │   ├── schemas.py
-│   │   │   └── crud.py
+│   │   │   ├── tasks.py
+│   │   │   ├── users.py
+│   │   │   └── seed.py
+│   │   ├── tests/
 │   │   ├── .env.example
 │   │   ├── requirements.txt
 │   │   └── README.md
@@ -317,7 +319,7 @@ pip install -r requirements.txt
 
 ### 5. Configure PostgreSQL for Day 05 Task 2
 
-Create the `demoapi_day5` database, copy `.env.example` to `.env`, and update the connection details for your local PostgreSQL server.
+Create the `demoapi_day5` database, copy `.env.example` to `.env`, and update the PostgreSQL connection details and JWT signing key. If local PostgreSQL is unavailable, the Task 2 README explains Supabase PostgreSQL setup.
 
 Example connection format:
 

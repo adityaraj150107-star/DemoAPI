@@ -1,0 +1,537 @@
+{
+  "info": {
+    "_postman_id": "bc60648b-3584-451b-9ba9-0c3f94a6443a",
+    "name": "DemoAPI Task Manager — JWT and Roles",
+    "description": "Set credentials in a private Postman environment before running. Tests the teacher/student task flow and authentication errors.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000" },
+    { "key": "teacher_email", "value": "" },
+    { "key": "teacher_password", "value": "" },
+    { "key": "student_email", "value": "" },
+    { "key": "student_password", "value": "" },
+    { "key": "access_token", "value": "" },
+    { "key": "refresh_token", "value": "" },
+    { "key": "teacher_id", "value": "" },
+    { "key": "student_id", "value": "" },
+    { "key": "task_id", "value": "" },
+    { "key": "previous_refresh_token", "value": "" },
+    { "key": "revoked_access_token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Teacher login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{teacher_email}}\",\"password\":\"{{teacher_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Teacher login succeeds', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.environment.set('access_token', data.access_token);",
+            "pm.environment.set('refresh_token', data.refresh_token);",
+            "pm.environment.set('teacher_id', data.user.id);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Student login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{student_email}}\",\"password\":\"{{student_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Student login succeeds', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.environment.set('access_token', data.access_token);",
+            "pm.environment.set('refresh_token', data.refresh_token);",
+            "pm.environment.set('student_id', data.user.id);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Teacher login for task creation",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{teacher_email}}\",\"password\":\"{{teacher_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Teacher login succeeds', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.environment.set('access_token', data.access_token);",
+            "pm.environment.set('refresh_token', data.refresh_token);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Teacher creates and assigns task",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Postman task\",\"description\":\"Complete the assigned exercise.\",\"assigned_to\":{{student_id}}}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/api/v3/tasks"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Teacher creates assigned task', function () { pm.response.to.have.status(201); });",
+            "pm.environment.set('task_id', pm.response.json().id);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Student login for task work",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{student_email}}\",\"password\":\"{{student_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Student login succeeds', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.environment.set('access_token', data.access_token);",
+            "pm.environment.set('refresh_token', data.refresh_token);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Student views assigned tasks",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/api/v3/tasks"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Student sees assigned task', function () { pm.response.to.have.status(200); pm.expect(pm.response.json().some(task => task.id == pm.environment.get('task_id'))).to.be.true; });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Student updates task status and notes",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"status\":\"in progress\",\"work_notes\":\"Started the exercise.\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/api/v3/tasks/{{task_id}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Student updates own task', function () { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('in progress'); });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Student refreshes and rotates tokens",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": ["pm.environment.set('previous_refresh_token', pm.environment.get('refresh_token'));"]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Refresh token rotates', function () { pm.response.to.have.status(200); });",
+              "const data = pm.response.json();",
+              "pm.environment.set('access_token', data.access_token);",
+              "pm.environment.set('refresh_token', data.refresh_token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"refresh_token\":\"{{refresh_token}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/refresh"
+      }
+    },
+    {
+      "name": "Old refresh token is rejected",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"refresh_token\":\"{{previous_refresh_token}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/refresh"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Previously rotated token is rejected', function () { pm.response.to.have.status(401); });"]
+        }
+      }]
+    },
+    {
+      "name": "Student cannot assign task",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"assigned_to\":{{student_id}}}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/api/v3/tasks/{{task_id}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Student cannot assign task', function () { pm.response.to.have.status(403); });"]
+        }
+      }]
+    },
+    {
+      "name": "Student cannot delete task",
+      "request": {
+        "method": "DELETE",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/api/v3/tasks/{{task_id}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Student cannot delete task', function () { pm.response.to.have.status(403); });"]
+        }
+      }]
+    },
+    {
+      "name": "Invalid login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{student_email}}\",\"password\":\"incorrect-password\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Invalid credentials are rejected', function () { pm.response.to.have.status(401); });"]
+        }
+      }]
+    },
+    {
+      "name": "Missing token is unauthorized",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "noauth" },
+        "url": "{{base_url}}/auth/me"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Missing token is rejected', function () { pm.response.to.have.status(401); });"]
+        }
+      }]
+    },
+    {
+      "name": "Teacher login for progress",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{teacher_email}}\",\"password\":\"{{teacher_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Teacher login succeeds', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.environment.set('access_token', data.access_token);",
+            "pm.environment.set('refresh_token', data.refresh_token);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Teacher views progress",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/api/v3/progress"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Teacher can view progress', function () { pm.response.to.have.status(200); });"]
+        }
+      }]
+    },
+    {
+      "name": "Invalid task payload returns validation error",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/api/v3/tasks"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Invalid task payload returns 422', function () { pm.response.to.have.status(422); });"]
+        }
+      }]
+    },
+    {
+      "name": "Missing task returns not found",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/api/v3/tasks/999999"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Unknown task returns 404', function () { pm.response.to.have.status(404); });"]
+        }
+      }]
+    },
+    {
+      "name": "Expired database session is rejected",
+      "description": "First use the README SQL to expire all active sessions for the teacher, then send this request.",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/auth/me"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Expired session returns 401', function () { pm.response.to.have.status(401); });"]
+        }
+      }]
+    },
+    {
+      "name": "Teacher login for JWT expiry test",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{teacher_email}}\",\"password\":\"{{teacher_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Teacher login succeeds', function () { pm.response.to.have.status(200); });",
+            "pm.environment.set('access_token', pm.response.json().access_token);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Expired JWT access token is rejected",
+      "description": "For this manual test, set ACCESS_TOKEN_MINUTES=1, restart the API, log in, wait one minute, then send this request.",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/auth/me"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Expired JWT returns 401', function () { pm.response.to.have.status(401); });"]
+        }
+      }]
+    },
+    {
+      "name": "Teacher login for logout",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{teacher_email}}\",\"password\":\"{{teacher_password}}\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Teacher login succeeds', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.environment.set('access_token', data.access_token);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Teacher logs out and revokes session",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/auth/logout"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Logout revokes the session', function () { pm.response.to.have.status(204); });",
+            "pm.environment.set('revoked_access_token', pm.environment.get('access_token'));"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Revoked token is rejected",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{revoked_access_token}}" }],
+        "auth": { "type": "noauth" },
+        "url": "{{base_url}}/auth/me"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Revoked token is rejected', function () { pm.response.to.have.status(401); });"]
+        }
+      }]
+    }
+  ]
+}
