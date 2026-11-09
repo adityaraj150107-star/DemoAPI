@@ -33,24 +33,32 @@ The focus is on understanding how backend APIs are designed, validated, document
 
 ---
 
-## 🚀 Technologies Used
+## 🛠️ Tech Stack
 
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="40" alt="FastAPI">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="40" alt="PostgreSQL">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" alt="Git">
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="42" alt="Python">
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="42" alt="FastAPI">
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="42" alt="PostgreSQL">
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="42" alt="Docker">
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="42" alt="Git">
 </p>
 
-- Python
-- FastAPI
-- PostgreSQL
-- SQLAlchemy
-- Pydantic
-- Docker
-- Docker Compose
-- Uvicorn
+| Technology | Purpose |
+|---|---|
+| 🐍 Python | Backend programming language |
+| ⚡ FastAPI | High-performance REST API framework |
+| 📦 Pydantic V2 | Request validation and response schemas |
+| 🗄️ PostgreSQL | Relational database |
+| 🔗 SQLAlchemy ORM | Python-based database operations |
+| 🔐 JWT | Token-based authentication in Day 05 |
+| 🐳 Docker | Application containerization |
+| ⚙️ Docker Compose | Container and service configuration |
+| 🦄 Uvicorn | ASGI server for running FastAPI |
+| 🔧 Git & GitHub | Version control and source-code hosting |
 
 ---
 
@@ -390,6 +398,32 @@ By working through these five days, the repository demonstrates practice with:
 
 ---
 
+## ✨ Key Features
+
+- 📅 **Day-wise Learning Path** — Five organized days with separate task folders and documentation.
+- 🐍 **FastAPI REST APIs** — Build and test backend endpoints using FastAPI.
+- 🔄 **CRUD Operations** — Practice creating, reading, updating, and deleting user records.
+- ✅ **Pydantic V2 Validation** — Define request and response models with validation rules.
+- 🐘 **PostgreSQL Integration** — Create tables and practice SQL queries.
+- 🔗 **SQLAlchemy ORM** — Connect FastAPI with PostgreSQL and manage database records.
+- 🔐 **JWT Authentication** — Practice login, protected routes, refresh tokens, and role-based access in Day 05.
+- 🐳 **Docker Development** — Build and run a containerized FastAPI health-check API.
+- 🧪 **API Testing** — Verify endpoints through Swagger UI, Postman, and automated tests where provided.
+- 📖 **Task Documentation** — Each day/task includes its own README and run instructions.
+
+## ⚙️ Prerequisites
+
+Before running a task, install the tools required by that task:
+
+- 🐍 Python 3.10 or a compatible version
+- 🧰 Visual Studio Code or another Python editor
+- 🔧 Git
+- 🐳 Docker Desktop (required for Day 02)
+- 🐘 PostgreSQL and pgAdmin (required for Day 05 database tasks)
+- 📬 Postman (recommended for API testing)
+
+Each day is an independent learning project. Check that day's README for its exact dependencies and setup instructions.
+
 ## 📋 Task Status
 
 - `pending`
@@ -402,6 +436,62 @@ By working through these five days, the repository demonstrates practice with:
 - `inactive`
 
 ---
+
+## 🩺 Troubleshooting
+
+| Issue | Suggested Solution |
+|---|---|
+| Python command is not recognized | Install Python and enable the PATH option, then reopen the terminal. |
+| Module not found | Open the correct Day/Task folder, activate its virtual environment, and install its `requirements.txt`. |
+| Uvicorn command is not recognized | Activate the virtual environment and install the task dependencies. |
+| Port 8000 is already in use | Stop the process using the port or run the API on another port. |
+| Docker command fails | Start Docker Desktop and wait until the engine is running. |
+| PostgreSQL connection fails | Check that PostgreSQL is running and verify the database name, username, password, host, and port in `.env`. |
+| API returns 401 or 403 | Check the authentication token and the role/permissions required by the endpoint. |
+
+## 🔒 Security Best Practices
+
+- Keep real passwords, database URLs, JWT secrets, and API keys inside local environment variables.
+- Never commit the actual `.env` file; use an `.env.example` template for required variable names.
+- Use password hashing instead of storing plain-text passwords.
+- Protect private endpoints with authentication and appropriate authorization checks.
+- Validate incoming request data before processing it.
+- Do not expose database credentials or sensitive tokens in screenshots, logs, or public documentation.
+
+## 🎯 Learning Objectives
+
+This repository provides practical experience with:
+
+- Python backend development and environment setup.
+- Git and GitHub version-control workflows.
+- Docker images, containers, Dockerfiles, and Docker Compose.
+- REST API design and CRUD operations using FastAPI.
+- Request validation and response serialization using Pydantic V2.
+- SQL queries, relational database concepts, and PostgreSQL.
+- SQLAlchemy engine, sessions, ORM models, and database-backed CRUD.
+- JWT authentication, refresh-token flow, and role-based access control.
+- API testing through Swagger UI, Postman, and pytest.
+
+## 🔮 Future Improvements
+
+Possible next steps for this learning repository:
+
+- Add more automated unit and integration tests.
+- Add structured logging and consistent error responses.
+- Add CI checks with GitHub Actions.
+- Add API rate limiting and production configuration examples.
+- Deploy selected APIs to a cloud hosting platform.
+- Add more authentication and authorization test cases.
+
+## 🤝 Contributing
+
+This repository is maintained as a practical learning project. Suggestions and improvements are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make a focused change and test it.
+4. Commit with a clear message.
+5. Open a pull request describing the change.
 
 ## 👤 Author
 
