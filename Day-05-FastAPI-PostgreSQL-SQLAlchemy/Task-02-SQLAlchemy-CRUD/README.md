@@ -19,6 +19,10 @@ Task-02-SQLAlchemy-CRUD/
 │   ├── tasks.py
 │   └── users.py
 ├── .env.example
+├── alembic.ini
+├── alembic/
+│   ├── env.py
+│   └── versions/
 ├── requirements.txt
 └── tests/
 ```
@@ -56,7 +60,27 @@ python -c "import secrets; print(secrets.token_urlsafe(48))"
 
 Never commit `.env`, real database credentials, seed passwords, or JWT secrets. `.env.example` contains placeholders only.
 
-The API creates missing tables at startup. It also adds `password_hash` and `role` columns to a pre-existing Day 05 `users` table. Existing accounts receive an unusable password marker and student role; those accounts cannot log in until recreated/reset through a controlled process.
+## Database migrations
+
+Database migrations version schema changes so development, test, and production databases can be updated consistently and rolled back when needed, instead of relying on table creation at API startup. Alembic autogenerates migration candidates from the SQLAlchemy models, which must be reviewed before applying. The initial revision creates `users`, `tasks`, and `sessions`; the next revision adds the `work_notes` task column.
+
+Run these commands from this project directory after configuring `.env` and installing `requirements.txt`:
+
+```powershell
+# Create a new migration after changing app/models.py
+alembic revision --autogenerate -m "describe the schema change"
+
+# Review the generated file in alembic/versions before applying it
+alembic upgrade head
+
+# Roll back the most recently applied revision
+alembic downgrade -1
+
+# Re-apply the latest revision
+alembic upgrade head
+```
+
+For a fresh database, apply the checked-in migrations before starting the API or running the seed command. If upgrading a database created by an earlier version of this project, back it up and compare its schema with the revision before using `alembic stamp`; stamping records a revision without applying schema changes and is only safe when the database already matches that revision. Do not run the initial create-tables revision against a database that already contains these tables.
 
 ## Seed accounts
 Public registration always creates a student, so it cannot be used to grant teacher privileges. Set private seed values in `.env` or the current PowerShell session, then run:

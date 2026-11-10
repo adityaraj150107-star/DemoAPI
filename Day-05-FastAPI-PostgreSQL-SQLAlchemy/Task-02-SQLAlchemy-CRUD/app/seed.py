@@ -3,8 +3,7 @@ import os
 from pydantic import EmailStr, TypeAdapter, ValidationError
 from sqlalchemy import select
 
-from .database import Base, SessionLocal, engine
-from .migrations import migrate_legacy_users
+from .database import SessionLocal
 from .models import User
 from .security import hash_password
 
@@ -14,8 +13,6 @@ email_adapter = TypeAdapter(EmailStr)
 def main() -> None:
     teacher_email, teacher_password = _required_credentials("TEACHER")
     student_email, student_password = _required_credentials("STUDENT")
-    Base.metadata.create_all(bind=engine)
-    migrate_legacy_users()
 
     users = (
         ("teacher", teacher_email, teacher_password, "Seed Teacher"),
