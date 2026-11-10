@@ -235,6 +235,8 @@ Day 05 is divided into two separate tasks inside one Day 05 folder.
 
 ## 📁 Repository Architecture
 
+The repository is organized into five independent learning days. Day 05 contains two separate tasks: PostgreSQL SQL practice and a database-backed FastAPI application. The Task 2 project now also includes **Alembic database migrations** to version and safely apply schema changes.
+
 ```text
 DemoAPI/
 │
@@ -265,6 +267,7 @@ DemoAPI/
 │   └── README.md
 │
 ├── Day-05-FastAPI-PostgreSQL-SQLAlchemy/
+│   │
 │   ├── Task-01-PostgreSQL/
 │   │   ├── users_queries.sql
 │   │   └── README.md
@@ -272,16 +275,26 @@ DemoAPI/
 │   ├── Task-02-SQLAlchemy-CRUD/
 │   │   ├── app/
 │   │   │   ├── main.py
-│   │   │   ├── database.py
 │   │   │   ├── auth.py
+│   │   │   ├── database.py
 │   │   │   ├── dependencies.py
 │   │   │   ├── models.py
 │   │   │   ├── schemas.py
+│   │   │   ├── security.py
+│   │   │   ├── seed.py
 │   │   │   ├── tasks.py
-│   │   │   ├── users.py
-│   │   │   └── seed.py
+│   │   │   └── users.py
+│   │   │
+│   │   ├── alembic/
+│   │   │   ├── versions/
+│   │   │   │   ├── d5d28bcf185f_create_users_tasks_and_sessions.py
+│   │   │   │   └── 3b3f2c0dd5d0_add_work_notes_to_tasks.py
+│   │   │   ├── env.py
+│   │   │   └── script.py.mako
+│   │   │
 │   │   ├── tests/
 │   │   ├── .env.example
+│   │   ├── alembic.ini
 │   │   ├── requirements.txt
 │   │   └── README.md
 │   │
@@ -289,6 +302,21 @@ DemoAPI/
 │
 └── README.md
 ```
+
+### 🧩 New Alembic Migration Files — Day 05 Task 2
+
+| File / Folder | Purpose |
+|---|---|
+| `alembic.ini` | Main Alembic configuration, including the migration script location and logging settings. |
+| `alembic/env.py` | Connects Alembic to the project's SQLAlchemy models and database URL; provides online and offline migration configuration. |
+| `alembic/script.py.mako` | Template used to generate new migration revision files. |
+| `alembic/versions/` | Stores the ordered database schema revisions. |
+| `d5d28bcf185f_create_users_tasks_and_sessions.py` | Initial migration that creates the `users`, `tasks`, and `sessions` tables, constraints, and indexes. |
+| `3b3f2c0dd5d0_add_work_notes_to_tasks.py` | Adds the optional `work_notes` column to the `tasks` table; its downgrade removes that column. |
+
+**Migration workflow:** Update SQLAlchemy models → generate a revision with `alembic revision --autogenerate` → review the generated migration → apply it with `alembic upgrade head`. Use `alembic downgrade -1` to roll back the latest applied revision.
+
+> **Important:** Run Alembic commands from the `Task-02-SQLAlchemy-CRUD` directory after configuring the database connection in `.env`. For an existing database, back it up and verify its schema before applying or stamping revisions. Do not apply the initial create-tables migration to a database that already contains those tables.
 
 ---
 
