@@ -247,6 +247,10 @@ The repository is organized into five independent learning days. Day 05 contains
 ```text
 DemoAPI/
 │
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+│
 ├── Day-01-Tools-Setup-and-Git/
 │   └── README.md
 │
@@ -300,6 +304,7 @@ DemoAPI/
 │   │   │   └── script.py.mako
 │   │   │
 │   │   ├── tests/
+│   │   │   └── test_api.py
 │   │   ├── .env.example
 │   │   ├── alembic.ini
 │   │   ├── requirements.txt
