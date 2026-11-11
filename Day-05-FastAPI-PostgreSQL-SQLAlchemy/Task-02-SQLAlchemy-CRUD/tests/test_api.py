@@ -268,6 +268,92 @@ def test_student_can_only_read_own_profile(client: TestClient) -> None:
     assert client.get("/api/v3/users/3").status_code == 404
 
 
+def test_task_list_pagination_search_and_filters(client: TestClient) -> None:
+    teacher = login(client, "teacher@example.com", "teacher-pass-123")
+    use_token(client, teacher["access_token"])
+    users = client.get("/api/v3/users/").json()
+    student_id = next(
+        user["id"] for user in users if user["email"] == "student@example.com"
+    )
+    other_student_id = next(
+        user["id"] for user in users if user["email"] == "other@example.com"
+    )
+    tasks = [
+        {"title": "Math homework", "assigned_to": student_id},
+        {"title": "Science essay", "assigned_to": student_id},
+        {"title": "History research", "assigned_to": other_student_id},
+        {"title": "Math quiz"},
+    ]
+    task_ids = []
+    for task in tasks:
+        response = client.post("/api/v3/tasks", json=task)
+        assert response.status_code == 201
+        task_ids.append(response.json()["id"])
+    assert client.patch(
+        f"/api/v3/tasks/{task_ids[1]}",
+        json={"status": "done"},
+    ).status_code == 200
+    assert client.patch(
+        f"/api/v3/tasks/{task_ids[3]}",
+        json={"status": "in progress"},
+    ).status_code == 200
+
+    first_page = client.get("/api/v3/tasks", params={"page": 1, "limit": 2})
+    second_page = client.get("/api/v3/tasks", params={"page": 2, "limit": 2})
+    assert [task["id"] for task in first_page.json()] == task_ids[:2]
+    assert [task["id"] for task in second_page.json()] == task_ids[2:]
+    assert client.get(
+        "/api/v3/tasks",
+        params={"page": 3, "limit": 2},
+    ).json() == []
+
+    assert {
+        task["id"]
+        for task in client.get("/api/v3/tasks", params={"search": "mAtH"}).json()
+    } == {task_ids[0], task_ids[3]}
+    assert [
+        task["id"]
+        for task in client.get("/api/v3/tasks", params={"status": "done"}).json()
+    ] == [task_ids[1]]
+    assert {
+        task["id"]
+        for task in client.get(
+            "/api/v3/tasks",
+            params={"assigned_to": student_id},
+        ).json()
+    } == {task_ids[0], task_ids[1]}
+    filtered = client.get(
+        "/api/v3/tasks",
+        params={
+            "search": "math",
+            "status": "pending",
+            "assigned_to": student_id,
+        },
+    )
+    assert [task["id"] for task in filtered.json()] == [task_ids[0]]
+
+    use_token(
+        client,
+        login(client, "student@example.com", "student-pass-123")["access_token"],
+    )
+    assert {
+        task["id"] for task in client.get("/api/v3/tasks").json()
+    } == {task_ids[0], task_ids[1]}
+    assert client.get(
+        "/api/v3/tasks",
+        params={"assigned_to": other_student_id},
+    ).json() == []
+
+    for params in (
+        {"page": 0},
+        {"limit": 101},
+        {"status": "invalid"},
+        {"assigned_to": 0},
+        {"search": ""},
+    ):
+        assert client.get("/api/v3/tasks", params=params).status_code == 422
+
+
 def test_seed_command_creates_accounts_without_replacing_existing_users(
     client: TestClient,
     monkeypatch: pytest.MonkeyPatch,

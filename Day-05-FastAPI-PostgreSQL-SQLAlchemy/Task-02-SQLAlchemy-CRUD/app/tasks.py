@@ -1,14 +1,14 @@
 from collections import defaultdict
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from .database import get_db
 from .dependencies import get_current_user, require_teacher
 from .models import Task, User
-from .schemas import TaskCreate, TaskResponse, TaskUpdate
+from .schemas import TaskCreate, TaskResponse, TaskStatus, TaskUpdate
 
 router = APIRouter(prefix="/api/v3", tags=["Tasks"])
 
@@ -42,10 +42,22 @@ def create_task(
 def list_tasks(
     user: Annotated[User, Depends(get_current_user)],
     db: Annotated[Session, Depends(get_db)],
+    page: Annotated[int, Query(ge=1)] = 1,
+    limit: Annotated[int, Query(ge=1, le=100)] = 20,
+    search: Annotated[str | None, Query(min_length=1, max_length=200)] = None,
+    status: TaskStatus | None = None,
+    assigned_to: Annotated[int | None, Query(gt=0)] = None,
 ) -> list[Task]:
     statement = select(Task).order_by(Task.id)
     if user.role == "student":
         statement = statement.where(Task.assigned_to == user.id)
+    if search and search.strip():
+        statement = statement.where(Task.title.ilike(f"%{search.strip()}%"))
+    if status is not None:
+        statement = statement.where(Task.status == status)
+    if assigned_to is not None:
+        statement = statement.where(Task.assigned_to == assigned_to)
+    statement = statement.offset((page - 1) * limit).limit(limit)
     return list(db.scalars(statement).all())
 
 

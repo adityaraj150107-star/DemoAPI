@@ -127,7 +127,7 @@ The access token defaults to 15 minutes; the refresh session defaults to 7 days.
 | GET | `/api/v3/users/` | List users (teacher only) |
 | GET | `/api/v3/users/{user_id}` | Get a profile (teacher or that user) |
 | POST | `/api/v3/tasks` | Create/optionally assign a task (teacher only) |
-| GET | `/api/v3/tasks` | All tasks for teachers; assigned tasks for students |
+| GET | `/api/v3/tasks` | Paginated, searchable, filterable tasks (role-scoped) |
 | GET | `/api/v3/tasks/{task_id}` | Get a task (teacher or assigned student) |
 | PATCH | `/api/v3/tasks/{task_id}` | Teacher edits task; student edits own status/notes |
 | DELETE | `/api/v3/tasks/{task_id}` | Delete a task (teacher only) |
@@ -135,8 +135,27 @@ The access token defaults to 15 minutes; the refresh session defaults to 7 days.
 
 Task statuses are `pending`, `in progress`, and `done`. Students may only change their own task status and work notes; the API returns 404 for another student's task. A logged-in student attempting a teacher-only action receives **403 Forbidden**. Missing/invalid authentication receives **401 Unauthorized**. Legacy unauthenticated user create/update/delete routes have been removed; registration is through `/auth/register`.
 
+### Task list pagination, search, and filters
+
+`GET /api/v3/tasks` accepts these optional query parameters:
+
+| Parameter | Default | Description |
+|---|---:|---|
+| `page` | `1` | 1-based page number (minimum `1`) |
+| `limit` | `20` | Page size (between `1` and `100`) |
+| `search` | — | Case-insensitive substring match against the task title |
+| `status` | — | Filter by `pending`, `in progress`, or `done` |
+| `assigned_to` | — | Filter by a positive user ID |
+
+For example, `GET /api/v3/tasks?page=1&limit=10&search=math&status=pending&assigned_to=2`
+combines pagination, title search, and both filters. The response remains a JSON
+array of task objects. Students always see only their own assigned tasks, even
+when query filters are supplied; teachers can list and filter all tasks.
+Invalid page sizes, status values, and user IDs return **422 Unprocessable
+Entity**.
+
 ## Postman
-Import `../../postman/DemoAPI-Task-Manager-Auth.postman_collection.json` and create a private environment with `base_url`, `teacher_email`, `teacher_password`, `student_email`, and `student_password`. Leave credentials out of exported/committed collection files.
+Import `../../postman/DemoAPI-Task-Manager-Auth.postman_collection.json` and create a private environment with `base_url`, `teacher_email`, `teacher_password`, `student_email`, and `student_password`. Leave credentials out of exported/committed collection files. The collection includes task-list requests for pagination, case-insensitive title search, status, and assignee filters. Also try a filtered request as a student to confirm that results remain restricted to that student's assignments.
 
 Run the requests in collection order to test teacher/student login, task assignment and progress, student status/notes updates, refresh-token rotation, forbidden assignment/deletion, invalid login, invalid input, a missing record, missing token, and revoked token. For the expired JWT request, set `ACCESS_TOKEN_MINUTES=1`, restart the API, log in, wait one minute, and send the request. The expired-session request is a separate manual step: first expire a test account's database session in PostgreSQL, then send that request:
 
@@ -146,7 +165,25 @@ SET expires_at = NOW() - INTERVAL '1 minute'
 WHERE user_id = <test_user_id> AND revoked_at IS NULL;
 ```
 
-Invalid request payloads return 422, duplicate registration returns 409, and unknown records return 404. Automated API tests run with `python -m pytest`.
+Invalid request payloads return 422, duplicate registration returns 409, and unknown records return 404.
+
+## Running the pytest suite
+
+From this directory, install the project dependencies and run the test suite:
+
+```powershell
+python -m pip install -r requirements.txt
+python -m pytest -q
+```
+
+The tests use an isolated in-memory SQLite database and FastAPI's `TestClient`,
+so they do not need a running PostgreSQL server. They cover authentication,
+teacher/student access, 401/403 responses, expired and revoked tokens, task
+creation/assignment/update/deletion, and task-list pagination/search/filters.
+
+GitHub Actions runs this same pytest command on every push and pull request. The
+workflow checks out the repository, sets up Python, installs this task's
+requirements, and marks the change passing only when the tests pass.
 
 ## Authorization matrix
 

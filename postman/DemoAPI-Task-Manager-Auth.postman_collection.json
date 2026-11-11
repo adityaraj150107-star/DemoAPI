@@ -125,6 +125,102 @@
       }]
     },
     {
+      "name": "Teacher creates pagination test task 1",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Postman pagination test\",\"assigned_to\":{{student_id}}}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/api/v3/tasks"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Pagination test task is created', function () { pm.response.to.have.status(201); });"]
+        }
+      }]
+    },
+    {
+      "name": "Teacher creates pagination test task 2",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Postman pagination test\",\"assigned_to\":{{student_id}}}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/api/v3/tasks"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test('Pagination test task is created', function () { pm.response.to.have.status(201); });"]
+        }
+      }]
+    },
+    {
+      "name": "Teacher tests first task page",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/api/v3/tasks?page=1&limit=1&search=Postman%20pagination%20test&status=pending&assigned_to={{student_id}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('First filtered page contains one matching task', function () { pm.response.to.have.status(200); pm.expect(pm.response.json()).to.have.lengthOf(1); });",
+            "const task = pm.response.json()[0];",
+            "pm.expect(task.title.toLowerCase()).to.include('postman pagination test');",
+            "pm.expect(task.status).to.eql('pending');",
+            "pm.expect(task.assigned_to).to.eql(Number(pm.environment.get('student_id')));"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Teacher tests second task page",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}", "type": "string" }]
+        },
+        "url": "{{base_url}}/api/v3/tasks?page=2&limit=1&search=Postman%20pagination%20test&status=pending&assigned_to={{student_id}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Second filtered page contains another matching task', function () { pm.response.to.have.status(200); pm.expect(pm.response.json()).to.have.lengthOf(1); });",
+            "const task = pm.response.json()[0];",
+            "pm.expect(task.title.toLowerCase()).to.include('postman pagination test');",
+            "pm.expect(task.status).to.eql('pending');",
+            "pm.expect(task.assigned_to).to.eql(Number(pm.environment.get('student_id')));"
+          ]
+        }
+      }]
+    },
+    {
       "name": "Student login for task work",
       "request": {
         "method": "POST",
