@@ -177,13 +177,17 @@ python -m pytest -q
 ```
 
 The tests use an isolated in-memory SQLite database and FastAPI's `TestClient`,
-so they do not need a running PostgreSQL server. They cover authentication,
-teacher/student access, 401/403 responses, expired and revoked tokens, task
-creation/assignment/update/deletion, and task-list pagination/search/filters.
+so they do not need a running PostgreSQL server. They cover login and student
+registration, teacher/student permissions, 401/403 responses, expired and
+revoked tokens, task creation/assignment/update/deletion, and task-list
+pagination/search/filters.
 
-GitHub Actions runs this same pytest command on every push and pull request. The
-workflow checks out the repository, sets up Python, installs this task's
-requirements, and marks the change passing only when the tests pass.
+**Continuous integration (CI)** automatically checks code changes so teams get
+consistent feedback and can catch regressions before merging. The GitHub
+Actions workflow checks out the repository, sets up Python 3.12, installs this
+task's requirements, and runs `python -m pytest -q` on every push and pull
+request. A failed test makes the workflow fail; a passing run is visible in the
+repository's **Actions** tab.
 
 ## Authorization matrix
 

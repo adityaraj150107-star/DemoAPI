@@ -214,7 +214,9 @@ Day 05 is divided into two separate tasks inside one Day 05 folder.
 - Add users, hashed passwords, roles, tasks, and revocable refresh-token sessions.
 - Implement login, logout, token refresh, and protected FastAPI dependencies.
 - Restrict task management, user visibility, and progress reporting by role.
-- Test API behavior in pytest and the supplied Postman collection.
+- Add task-list pagination, title search, and status/assignee filters.
+- Test authentication, permissions, task CRUD, and list queries with pytest and Postman.
+- Run the pytest suite automatically with GitHub Actions on every push and pull request.
 
 **Authentication and task endpoints**
 
@@ -229,6 +231,8 @@ Day 05 is divided into two separate tasks inside one Day 05 folder.
 **Concepts learned:** PostgreSQL, SQLAlchemy ORM, Alembic schema migrations, JWT access/refresh tokens, Argon2 password hashing, session revocation, authentication dependencies, RBAC, and 401 vs 403 errors.
 
 **Database migration management:** The project uses Alembic to track schema changes as revision files instead of creating or changing tables automatically when the API starts. The checked-in revisions first create the `users`, `tasks`, and `sessions` tables, then add the optional `work_notes` column to `tasks`. Each revision includes both an `upgrade()` and a `downgrade()` operation.
+
+**Automated tests and CI:** The Task Manager tests use pytest and FastAPI's `TestClient`; run them from the Task 2 folder with `python -m pytest -q`. GitHub Actions runs the same suite on each push and pull request. Continuous integration (CI) automates checks on code changes so regressions are caught early and contributors get consistent feedback. The workflow and coverage details are documented in the [Task 2 README](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#running-the-pytest-suite).
 
 [Open Task 2 — Authenticated Task Manager →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
 
@@ -541,12 +545,10 @@ This repository provides practical experience with:
 
 Possible next steps for this learning repository:
 
-- Add more automated unit and integration tests.
+- Expand automated test coverage for additional API edge cases.
 - Add structured logging and consistent error responses.
-- Add CI checks with GitHub Actions.
 - Add API rate limiting and production configuration examples.
 - Deploy selected APIs to a cloud hosting platform.
-- Add more authentication and authorization test cases.
 
 ## 🤝 Contributing
 
