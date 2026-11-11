@@ -54,6 +54,7 @@ The focus is on understanding how backend APIs are designed, validated, document
 | 📦 Pydantic V2 | Request validation and response schemas |
 | 🗄️ PostgreSQL | Relational database |
 | 🔗 SQLAlchemy ORM | Python-based database operations |
+| 🔄 Alembic | Version-controlled database schema migrations |
 | 🔐 JWT | Token-based authentication in Day 05 |
 | 🐳 Docker | Application containerization |
 | ⚙️ Docker Compose | Container and service configuration |
@@ -225,15 +226,19 @@ Day 05 is divided into two separate tasks inside one Day 05 folder.
 | POST/GET/PATCH/DELETE | `/api/v3/tasks` | Role-protected task management |
 | GET | `/api/v3/progress` | Teacher-only progress report |
 
-**Concepts learned:** PostgreSQL, SQLAlchemy ORM, JWT access/refresh tokens, Argon2 password hashing, session revocation, authentication dependencies, RBAC, and 401 vs 403 errors.
+**Concepts learned:** PostgreSQL, SQLAlchemy ORM, Alembic schema migrations, JWT access/refresh tokens, Argon2 password hashing, session revocation, authentication dependencies, RBAC, and 401 vs 403 errors.
+
+**Database migration management:** The project uses Alembic to track schema changes as revision files instead of creating or changing tables automatically when the API starts. The checked-in revisions first create the `users`, `tasks`, and `sessions` tables, then add the optional `work_notes` column to `tasks`. Each revision includes both an `upgrade()` and a `downgrade()` operation.
 
 [Open Task 2 — Authenticated Task Manager →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
 
-**Database note:** PostgreSQL is required; the task README also documents using Supabase PostgreSQL when local PostgreSQL is unavailable. The seed command provisions a teacher and student from private environment variables.
+**Database note:** PostgreSQL is required; the task README also documents using Supabase PostgreSQL when local PostgreSQL is unavailable. The seed command provisions a teacher and student from private environment variables. Apply the checked-in Alembic migrations to a fresh database before starting the API or running the seed command.
 
 ---
 
 ## 📁 Repository Architecture
+
+The repository is organized into five independent learning days. Day 05 contains two separate tasks: PostgreSQL SQL practice and a database-backed FastAPI application. The Task 2 project now also includes **Alembic database migrations** to version and safely apply schema changes.
 
 ```text
 DemoAPI/
@@ -265,6 +270,7 @@ DemoAPI/
 │   └── README.md
 │
 ├── Day-05-FastAPI-PostgreSQL-SQLAlchemy/
+│   │
 │   ├── Task-01-PostgreSQL/
 │   │   ├── users_queries.sql
 │   │   └── README.md
@@ -272,16 +278,26 @@ DemoAPI/
 │   ├── Task-02-SQLAlchemy-CRUD/
 │   │   ├── app/
 │   │   │   ├── main.py
-│   │   │   ├── database.py
 │   │   │   ├── auth.py
+│   │   │   ├── database.py
 │   │   │   ├── dependencies.py
 │   │   │   ├── models.py
 │   │   │   ├── schemas.py
+│   │   │   ├── security.py
+│   │   │   ├── seed.py
 │   │   │   ├── tasks.py
-│   │   │   ├── users.py
-│   │   │   └── seed.py
+│   │   │   └── users.py
+│   │   │
+│   │   ├── alembic/
+│   │   │   ├── versions/
+│   │   │   │   ├── d5d28bcf185f_create_users_tasks_and_sessions.py
+│   │   │   │   └── 3b3f2c0dd5d0_add_work_notes_to_tasks.py
+│   │   │   ├── env.py
+│   │   │   └── script.py.mako
+│   │   │
 │   │   ├── tests/
 │   │   ├── .env.example
+│   │   ├── alembic.ini
 │   │   ├── requirements.txt
 │   │   └── README.md
 │   │
@@ -289,6 +305,21 @@ DemoAPI/
 │
 └── README.md
 ```
+
+### 🧩 New Alembic Migration Files — Day 05 Task 2
+
+| File / Folder | Purpose |
+|---|---|
+| `alembic.ini` | Main Alembic configuration, including the migration script location and logging settings. |
+| `alembic/env.py` | Connects Alembic to the project's SQLAlchemy models and database URL; provides online and offline migration configuration. |
+| `alembic/script.py.mako` | Template used to generate new migration revision files. |
+| `alembic/versions/` | Stores the ordered database schema revisions. |
+| `d5d28bcf185f_create_users_tasks_and_sessions.py` | Initial migration that creates the `users`, `tasks`, and `sessions` tables, constraints, and indexes. |
+| `3b3f2c0dd5d0_add_work_notes_to_tasks.py` | Adds the optional `work_notes` column to the `tasks` table; its downgrade removes that column. |
+
+**Migration workflow:** Update SQLAlchemy models → generate a revision with `alembic revision --autogenerate -m "describe the change"` → review the generated file in `alembic/versions/` → apply it with `alembic upgrade head`. Use `alembic current` to inspect the database revision, `alembic history` to view revision history, and `alembic downgrade -1` to roll back one revision.
+
+> **Important:** Run Alembic commands from the `Task-02-SQLAlchemy-CRUD` directory after configuring the database connection in `.env`. For an existing database, back it up and verify its schema before applying or stamping revisions. Do not apply the initial create-tables migration to a database that already contains those tables.
 
 ---
 
@@ -337,7 +368,37 @@ DATABASE_URL=postgresql+psycopg://postgres:YOUR_PASSWORD@localhost:5432/demoapi_
 
 Keep your actual `.env` file private. Never commit database passwords or API secrets.
 
-### 6. Run the FastAPI application
+### 6. Apply database migrations (Day 05 Task 2)
+
+Run these commands from the `Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD` folder after installing dependencies and configuring `.env`:
+
+```powershell
+# Apply all pending migrations
+alembic upgrade head
+
+# Check the current database revision
+alembic current
+
+# View available migration history
+alembic history
+```
+
+When you change a SQLAlchemy model and need a schema update, generate and review a migration before applying it:
+
+```powershell
+alembic revision --autogenerate -m "add a new field"
+alembic upgrade head
+```
+
+To undo the latest applied revision:
+
+```powershell
+alembic downgrade -1
+```
+
+> **Existing database warning:** Back up an existing database and compare its actual schema with the migration revisions before upgrading. The initial revision creates tables; do not run it against a database that already has those tables. `alembic stamp` only records a revision and does not execute the migration, so use it only when the database schema already matches that revision.
+
+### 7. Run the FastAPI application
 
 For Day 03 or Day 04, run from that day's folder:
 
@@ -393,7 +454,8 @@ By working through these five days, the repository demonstrates practice with:
 - Day 03 and Day 04 use in-memory data for learning; data resets when their application restarts.
 - Day 05 Task 2 uses PostgreSQL for persistent user records.
 - Use `.env.example` as a template and keep local secrets out of Git.
-- The current Day 05 SQLAlchemy API manages Users. Task status labels are documented separately and do not imply a Tasks CRUD API.
+- Day 05 Task 2 provides a PostgreSQL-backed task manager with teacher/student roles, JWT-based authentication, task assignment, status updates, and work notes.
+- Alembic manages Day 05 Task 2 schema changes; database tables are created or changed by applying reviewed migrations, not by relying on automatic table creation at API startup.
 - Run and test each application locally before treating a task as completed.
 
 ---
@@ -406,6 +468,7 @@ By working through these five days, the repository demonstrates practice with:
 - ✅ **Pydantic V2 Validation** — Define request and response models with validation rules.
 - 🐘 **PostgreSQL Integration** — Create tables and practice SQL queries.
 - 🔗 **SQLAlchemy ORM** — Connect FastAPI with PostgreSQL and manage database records.
+- 🔄 **Alembic Migrations** — Version database schema changes with revision history, upgrades, and rollbacks.
 - 🔐 **JWT Authentication** — Practice login, protected routes, refresh tokens, and role-based access in Day 05.
 - 🐳 **Docker Development** — Build and run a containerized FastAPI health-check API.
 - 🧪 **API Testing** — Verify endpoints through Swagger UI, Postman, and automated tests where provided.
@@ -420,6 +483,7 @@ Before running a task, install the tools required by that task:
 - 🔧 Git
 - 🐳 Docker Desktop (required for Day 02)
 - 🐘 PostgreSQL and pgAdmin (required for Day 05 database tasks)
+- 🔄 Alembic (installed automatically from Task 2 `requirements.txt` for database migrations)
 - 📬 Postman (recommended for API testing)
 
 Each day is an independent learning project. Check that day's README for its exact dependencies and setup instructions.
@@ -469,6 +533,7 @@ This repository provides practical experience with:
 - Request validation and response serialization using Pydantic V2.
 - SQL queries, relational database concepts, and PostgreSQL.
 - SQLAlchemy engine, sessions, ORM models, and database-backed CRUD.
+- Alembic revision generation, migration review, schema upgrades, migration history, and safe rollbacks.
 - JWT authentication, refresh-token flow, and role-based access control.
 - API testing through Swagger UI, Postman, and pytest.
 
