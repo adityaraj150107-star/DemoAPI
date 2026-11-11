@@ -1,15 +1,1 @@
 $kind: collection
-description: Set credentials in a private Postman environment before running. Tests the teacher/student task flow and authentication errors.
-variables:
-  base_url: http://127.0.0.1:8000
-  teacher_email: ""
-  teacher_password: ""
-  student_email: ""
-  student_password: ""
-  access_token: ""
-  refresh_token: ""
-  teacher_id: ""
-  student_id: ""
-  task_id: ""
-  previous_refresh_token: ""
-  revoked_access_token: ""
