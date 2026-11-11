@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{base_url}}/api/v3/tasks/{{task_id}}"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"status":"in progress","work_notes":"Started the exercise."}'
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Student updates own task', function () { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql('in progress'); });
+    language: text/javascript
+order: 11000

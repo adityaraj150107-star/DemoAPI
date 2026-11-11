@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{base_url}}/api/v3/progress"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Teacher can view progress', function () { pm.response.to.have.status(200); });
+    language: text/javascript
+order: 19000
