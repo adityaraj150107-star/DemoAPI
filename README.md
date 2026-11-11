@@ -312,6 +312,25 @@ DemoAPI/
 │   │
 │   └── README.md
 │
+├── postman/
+│   ├── collections/
+│   │   └── DemoAPI Task Manager — JWT and Roles/
+│   │       ├── .resources/
+│   │       ├── Teacher login.request.yaml
+│   │       ├── Teacher creates and assigns task.request.yaml
+│   │       ├── Teacher tests first task page.request.yaml
+│   │       ├── Student login.request.yaml
+│   │       └── ... (27 request files)
+│   ├── environments/
+│   │   ├── New Environment.environment.yaml
+│   │   └── New Environment-1.environment.yaml
+│   ├── globals/
+│   │   └── workspace.globals.yaml
+│   ├── DemoAPI-Task-Manager-Auth.postman_collection.json
+│   ├── DemoAPI.postman_collection.json
+│   ├── Health management api.postman_collection.json
+│   └── Health management api with data validation and error message.postman_collection.json
+│
 └── README.md
 ```
 
