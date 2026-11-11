@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{base_url}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"email":"{{student_email}}","password":"{{student_password}}"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Student login succeeds', function () { pm.response.to.have.status(200); });
+      const data = pm.response.json();
+      pm.environment.set('access_token', data.access_token);
+      pm.environment.set('refresh_token', data.refresh_token);
+      pm.environment.set('student_id', data.user.id);
+    language: text/javascript
+order: 2000

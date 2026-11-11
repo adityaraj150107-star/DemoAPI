@@ -2,6 +2,10 @@
 workspace:
   id: 758c5fb7-0c86-43f0-8462-9d5094a30445
 
+cloudResources:
+  collections:
+    ../postman/collections/DemoAPI Task Manager — JWT and Roles: cf251415-24a9-4aa1-bebc-3e331cb5d2ca
+
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:
 #localResources:

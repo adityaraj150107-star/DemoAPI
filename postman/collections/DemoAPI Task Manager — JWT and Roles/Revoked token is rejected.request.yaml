@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{base_url}}/auth/me"
+method: GET
+headers:
+  Authorization: Bearer {{revoked_access_token}}
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Revoked token is rejected', function () { pm.response.to.have.status(401); });
+    language: text/javascript
+order: 27000

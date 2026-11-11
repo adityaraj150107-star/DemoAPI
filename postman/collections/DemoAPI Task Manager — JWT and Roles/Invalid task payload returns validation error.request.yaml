@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{base_url}}/api/v3/tasks"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"title":""}'
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Invalid task payload returns 422', function () { pm.response.to.have.status(422); });
+    language: text/javascript
+order: 20000

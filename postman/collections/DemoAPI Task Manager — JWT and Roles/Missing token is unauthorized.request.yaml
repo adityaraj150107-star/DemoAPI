@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{base_url}}/auth/me"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Missing token is rejected', function () { pm.response.to.have.status(401); });
+    language: text/javascript
+order: 17000
