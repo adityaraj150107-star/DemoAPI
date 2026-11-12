@@ -181,6 +181,54 @@ Day 05 is divided into two independent tasks.
 
 ---
 
+## 🗄️ Database Design
+
+The Day 05 Task Manager uses PostgreSQL and SQLAlchemy to manage three primary resources: **users, tasks, and authentication sessions**.
+
+### 👤 Users
+
+Typical fields:
+
+- `id` — Unique user identifier
+- `name` — User name
+- `email` — Unique email address
+- `age` — User age (optional)
+- `is_active` — Account active/inactive status
+- `password_hash` — Securely hashed password (never store plain-text passwords)
+- `role` — User role (`teacher` or `student`)
+- `created_at` — Account creation timestamp
+
+### ✅ Tasks
+
+Typical fields:
+
+- `id` — Unique task identifier
+- `title` — Task title
+- `description` — Task details (optional)
+- `status` — Task status (`pending`, `in progress`, or `done`)
+- `assigned_to` — User ID of the assigned student (optional)
+- `assigned_by` — User ID of the teacher who created/assigned the task
+- `work_notes` — Student work notes (optional)
+- `created_at` — Task creation timestamp
+- `updated_at` — Last update timestamp
+
+**Relationship:** A user can be assigned multiple tasks and can also create multiple tasks. The `assigned_to` and `assigned_by` fields reference the `users.id` column through foreign keys.
+
+### 🔐 Authentication Sessions
+
+Typical fields:
+
+- `id` — Unique session identifier
+- `user_id` — Associated user ID
+- `refresh_token_hash` — Hashed refresh token
+- `expires_at` — Session expiry timestamp
+- `revoked_at` — Session revocation timestamp (optional)
+- `created_at` — Session creation timestamp
+
+**Database note:** These fields are based on the SQLAlchemy models in `Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/app/models.py`. Day 03 and Day 04 are separate learning exercises and use in-memory storage.
+
+---
+
 ## 📂 Repository Structure
 
 ```text
