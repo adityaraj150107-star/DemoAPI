@@ -82,6 +82,23 @@ alembic upgrade head
 
 For a fresh database, apply the checked-in migrations before starting the API or running the seed command. If upgrading a database created by an earlier version of this project, back it up and compare its schema with the revision before using `alembic stamp`; stamping records a revision without applying schema changes and is only safe when the database already matches that revision. Do not run the initial create-tables revision against a database that already contains these tables.
 
+## Deploy on Render
+
+The repository-root `render.yaml` defines a free Python web service and a Render PostgreSQL database. In Render, create a new Blueprint from this repository and select the `main` branch. Review the services before applying the Blueprint.
+
+The Blueprint generates `JWT_SECRET_KEY` and connects the service to its database. When prompted, set these four private variables in Render (do not put their values in Git or this README):
+
+- `SEED_TEACHER_EMAIL`
+- `SEED_TEACHER_PASSWORD`
+- `SEED_STUDENT_EMAIL`
+- `SEED_STUDENT_PASSWORD`
+
+The start command applies `alembic upgrade head`, runs the idempotent seed command, and then starts Uvicorn on Render's `$PORT`. This runs on each service start because Render's pre-deploy command is not available on the free web-service plan; completed migrations and existing seed accounts are left unchanged.
+
+After deployment, open `https://<your-service>.onrender.com/docs` and `https://<your-service>.onrender.com/health`. Add the actual service URL to the root README once Render creates it.
+
+Render's free web service spins down after 15 minutes without traffic and can take about a minute to wake up. Its free PostgreSQL database expires 30 days after creation; export or migrate the data before then if you need to keep it. See [Render's free plan limitations](https://render.com/docs/free).
+
 ## Seed accounts
 Public registration always creates a student, so it cannot be used to grant teacher privileges. Set private seed values in `.env` or the current PowerShell session, then run:
 

@@ -442,6 +442,12 @@ For Day 02 Docker execution, follow its README and use:
 docker compose up --build
 ```
 
+### Deploy the Task Manager API on Render
+
+The repository-root [`render.yaml`](render.yaml) Blueprint configures a free Render web service and PostgreSQL database for Day 05 Task 2. In Render, create a Blueprint from this GitHub repository and select `main`. Enter the teacher and student seed email/password values in Render's environment settings; keep them, the database URL, and JWT secret out of GitHub. The Blueprint generates a JWT secret, and the service applies Alembic migrations and seeds accounts before starting the API.
+
+Once deployed, add the Render service URL here and use its `/docs` and `/health` paths to test the live API. Free web services sleep after 15 minutes idle; first request wake-up can take about a minute. Free Render PostgreSQL databases expire after 30 days. See the [Task Manager deployment notes](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#deploy-on-render) before creating the service.
+
 ---
 
 ## 📖 API Documentation & Testing

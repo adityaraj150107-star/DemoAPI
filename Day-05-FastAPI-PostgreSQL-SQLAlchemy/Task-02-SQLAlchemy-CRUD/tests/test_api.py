@@ -8,10 +8,32 @@ import jwt
 import pytest
 from fastapi.testclient import TestClient
 
-from app.database import Base, SessionLocal, engine
+from app.database import Base, SessionLocal, _normalize_database_url, engine
 from app.main import app
 from app.models import AuthSession, User
 from app.security import JWT_SECRET_KEY, hash_password
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [
+        (
+            "postgres://user:password@host:5432/database",
+            "postgresql+psycopg://user:password@host:5432/database",
+        ),
+        (
+            "postgresql://user:password@host:5432/database",
+            "postgresql+psycopg://user:password@host:5432/database",
+        ),
+        (
+            "postgresql+psycopg://user:password@host:5432/database",
+            "postgresql+psycopg://user:password@host:5432/database",
+        ),
+        ("sqlite://", "sqlite://"),
+    ],
+)
+def test_database_url_uses_psycopg_driver(url: str, expected: str) -> None:
+    assert _normalize_database_url(url) == expected
 
 
 @pytest.fixture

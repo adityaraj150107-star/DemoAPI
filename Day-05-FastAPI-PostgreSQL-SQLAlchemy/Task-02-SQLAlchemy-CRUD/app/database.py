@@ -7,12 +7,22 @@ from sqlalchemy.pool import StaticPool
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
+database_url = os.getenv("DATABASE_URL")
+if not database_url:
     raise RuntimeError(
         "DATABASE_URL is not configured. Copy .env.example to .env "
         "and set your PostgreSQL connection URL."
     )
+
+
+def _normalize_database_url(url: str) -> str:
+    for scheme in ("postgres://", "postgresql://"):
+        if url.startswith(scheme):
+            return "postgresql+psycopg://" + url[len(scheme) :]
+    return url
+
+
+DATABASE_URL = _normalize_database_url(database_url)
 
 engine_options = {"pool_pre_ping": True}
 if DATABASE_URL.startswith("sqlite"):
