@@ -95,7 +95,7 @@ The Blueprint generates `JWT_SECRET_KEY` and connects the service to its databas
 
 The start command applies `alembic upgrade head`, runs the idempotent seed command, and then starts Uvicorn on Render's `$PORT`. This runs on each service start because Render's pre-deploy command is not available on the free web-service plan; completed migrations and existing seed accounts are left unchanged.
 
-After deployment, open `https://<your-service>.onrender.com/docs` and `https://<your-service>.onrender.com/health`. Add the actual service URL to the root README once Render creates it.
+The live API is available at `https://demoapi-task-manager.onrender.com`. Open its `/docs` page for the interactive API documentation or `/health` for the health check.
 
 Render's free web service spins down after 15 minutes without traffic and can take about a minute to wake up. Its free PostgreSQL database expires 30 days after creation; export or migrate the data before then if you need to keep it. See [Render's free plan limitations](https://render.com/docs/free).
 
