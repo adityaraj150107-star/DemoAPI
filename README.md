@@ -1,37 +1,47 @@
-<div align="center">
+# 🚀 DemoAPI — FastAPI Backend Development
 
-# <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="34" height="34" alt="FastAPI"> DemoAPI — FastAPI Internship Work
+<p align="center">
+  <strong>A hands-on backend development project covering FastAPI, Docker, PostgreSQL, SQLAlchemy, authentication, testing, CI, and cloud deployment.</strong>
+</p>
 
-### Day 01 → Day 05 | Backend Development Learning & Implementation
-
-A day-wise, hands-on backend development repository covering developer setup, Git & GitHub, Docker, REST API development, Pydantic V2 validation, PostgreSQL, and SQLAlchemy ORM.
-
-<p>
-  <a href="https://github.com/adityaraj150107-star/DemoAPI"><img src="https://img.shields.io/badge/Repository-DemoAPI-181717?logo=github" alt="GitHub repository"></a>
-  <img src="https://img.shields.io/badge/Progress-Day%2001--05-blue" alt="Day 01 to Day 05">
+<p align="center">
+  <a href="https://github.com/adityaraj150107-star/DemoAPI"><img src="https://img.shields.io/badge/GitHub-DemoAPI-181717?logo=github&logoColor=white" alt="GitHub"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/FastAPI-REST%20API-009688?logo=fastapi&logoColor=white" alt="FastAPI">
-  <img src="https://img.shields.io/badge/Pydantic-V2-E92063" alt="Pydantic V2">
   <img src="https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
   <img src="https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Render-Deployed-46E3B7?logo=render&logoColor=black" alt="Render">
+  <img src="https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white" alt="GitHub Actions">
 </p>
 
-</div>
-
 ---
 
-## 👨‍💻 About This Repository
+## 📌 Overview
 
-**DemoAPI** is my practical backend development learning repository. It documents the work completed across five learning days, with each day organized into a separate folder so the code, dependencies, instructions, and deliverables remain easy to understand and maintain.
+**DemoAPI** is a practical, day-wise backend development repository. It documents the journey from development environment setup and Git fundamentals to building, validating, testing, containerizing, and deploying REST APIs with FastAPI.
 
-The repository follows a progressive learning path:
+The repository is organized into five learning days. Day 05 contains two separate tasks: PostgreSQL query practice and a database-backed Task Manager API using SQLAlchemy.
 
-**Development Setup → Docker → FastAPI CRUD → Pydantic V2 → PostgreSQL & SQLAlchemy**
+**Learning path:**
 
-The focus is on understanding how backend APIs are designed, validated, documented, containerized, and connected to a relational database.
+`Development Setup → Docker → FastAPI CRUD → Pydantic V2 → PostgreSQL & SQLAlchemy → Authentication → Testing & CI → Render Deployment`
 
----
+## ✨ Features
+
+- ⚡ **FastAPI REST APIs** — Build APIs with organized routes and interactive documentation.
+- 🔢 **API Versioning** — Practice versioned user endpoints across the learning tasks.
+- 🔄 **CRUD Operations** — Create, read, update, and delete user and task records.
+- ✅ **Pydantic V2** — Validate request data and define consistent response schemas.
+- 🐘 **PostgreSQL** — Store persistent application data and practice SQL queries.
+- 🔗 **SQLAlchemy ORM** — Work with database models, sessions, and relationships.
+- 🔄 **Alembic Migrations** — Track schema changes with revision history and rollback support.
+- 🔐 **JWT Authentication** — Access/refresh tokens, protected routes, and session revocation.
+- 👥 **Role-Based Access Control** — Teacher and student permissions for task management.
+- 🐳 **Docker & Compose** — Build and run a containerized FastAPI development environment.
+- 🧪 **Testing** — Verify API behavior with Postman, Swagger UI, and pytest.
+- ⚙️ **GitHub Actions CI** — Run automated tests on pushes and pull requests.
+- ☁️ **Render Deployment** — Host the Task Manager API with a PostgreSQL database.
 
 ## 🛠️ Tech Stack
 
@@ -50,87 +60,58 @@ The focus is on understanding how backend APIs are designed, validated, document
 | Technology | Purpose |
 |---|---|
 | 🐍 Python | Backend programming language |
-| ⚡ FastAPI | High-performance REST API framework |
+| ⚡ FastAPI | REST API framework |
 | 📦 Pydantic V2 | Request validation and response schemas |
-| 🗄️ PostgreSQL | Relational database |
-| 🔗 SQLAlchemy ORM | Python-based database operations |
-| 🔄 Alembic | Version-controlled database schema migrations |
-| 🔐 JWT | Token-based authentication in Day 05 |
+| 🐘 PostgreSQL | Relational database |
+| 🔗 SQLAlchemy | Object-relational mapping |
+| 🔄 Alembic | Database schema migrations |
+| 🔐 JWT / Argon2 | Token authentication and password hashing |
 | 🐳 Docker | Application containerization |
 | ⚙️ Docker Compose | Container and service configuration |
-| 🦄 Uvicorn | ASGI server for running FastAPI |
-| 🔧 Git & GitHub | Version control and source-code hosting |
+| 🦄 Uvicorn | ASGI application server |
+| 🧪 Pytest / Postman | Automated and manual API testing |
+| 🔁 GitHub Actions | Continuous Integration |
+| ☁️ Render | Cloud hosting and PostgreSQL deployment |
 
----
-
-## 🗓️ Day-wise Learning & Task Implementation
+## 🗓️ Day-wise Learning & Implementation
 
 ### Day 01 — Tools Setup & Git Basics
 
-<kbd>FOUNDATION</kbd>
+**Objective:** Prepare the development environment and understand version control.
 
-**Objective:** Prepare the development environment and understand the Git/GitHub workflow used to manage project code.
-
-**Tasks & work**
 - Set up Python and Visual Studio Code.
-- Verify the development environment and terminal commands.
-- Understand Git repositories, working tree, staging area, and commits.
+- Understand repositories, working tree, staging, and commits.
 - Practice `git init`, `git status`, `git add`, and `git commit`.
-- Understand remote repositories, `git push`, and `git pull`.
-- Organize the learning work in the DemoAPI GitHub repository.
-
-**Concepts learned:** Development environment, version control, repository, staging, commit history, remote origin, and GitHub.
-
-**Deliverable:** A configured development environment and a GitHub repository for maintaining the day-wise tasks.
+- Work with remote repositories using `git push` and `git pull`.
 
 [Open Day 01 documentation →](Day-01-Tools-Setup-and-Git/README.md)
 
----
-
 ### Day 02 — Docker Development Environment
 
-<kbd>CONTAINERIZATION</kbd>
+**Objective:** Create a small FastAPI health-check API and run it in Docker.
 
-**Objective:** Create a small FastAPI health-check API and run it inside a Docker container.
+- Learn images, containers, Dockerfiles, and Docker Compose.
+- Implement `GET /health` returning a JSON health response.
+- Build the image and start the container.
+- Test the endpoint using Postman or a browser.
 
-**Tasks & work**
-- Learn Docker images, containers, Dockerfiles, and Docker Compose.
-- Create a FastAPI application with a `GET /health` endpoint.
-- Return a JSON health response: `{"status": "ok"}`.
-- Write a Dockerfile to build the application image.
-- Configure Docker Compose to start the API.
-- Build and run the container, then test the endpoint using a browser or Postman.
-
-**Key files:** `app/main.py`, `Dockerfile`, `docker-compose.yml`, and `requirements.txt`.
-
-**Expected API response**
+**Expected response**
 ```json
 {
   "status": "ok"
 }
 ```
 
-**Concepts learned:** Containerization, image building, port mapping, container lifecycle, and Compose-based execution.
-
 [Open Day 02 documentation →](Day-02-Docker-Development-Environment/README.md)
-
----
 
 ### Day 03 — FastAPI Users CRUD API
 
-<kbd>REST API DEVELOPMENT</kbd>
+**Objective:** Build a REST API and implement the four CRUD operations.
 
-**Objective:** Build a Users REST API and understand the four fundamental CRUD operations.
-
-**Tasks & work**
-- Create a FastAPI application and organize API routes under the V1 endpoint.
-- Implement Create, Read, Update, and Delete operations for users.
-- Handle JSON request bodies and URL path parameters.
-- Generate user IDs and prevent duplicate email addresses.
-- Validate basic user fields and return meaningful HTTP errors.
-- Test the endpoints through Swagger UI.
-
-**CRUD endpoint summary**
+- Create, read, update, and delete user records.
+- Work with HTTP methods, path parameters, and JSON request bodies.
+- Handle duplicate email addresses and invalid requests.
+- Test endpoints using Swagger UI.
 
 | Operation | Method | Endpoint |
 |---|---|---|
@@ -140,220 +121,122 @@ The focus is on understanding how backend APIs are designed, validated, document
 | Update user | PUT | `/api/v1/user/{user_id}` |
 | Delete user | DELETE | `/api/v1/user/{user_id}` |
 
-**Concepts learned:** REST principles, HTTP methods, route parameters, request payloads, CRUD logic, status codes, and exception handling.
-
-**Storage note:** This Day 03 exercise uses in-memory storage. User records reset when the application restarts.
+**Storage:** This learning exercise uses in-memory storage; records reset when the application restarts.
 
 [Open Day 03 documentation →](Day-03-FastAPI-CRUD/README.md)
 
----
+### Day 04 — Pydantic V2 Validation
 
-### Day 04 — Pydantic V2 Request & Response Models
+**Objective:** Define structured request and response models with validation rules.
 
-<kbd>DATA VALIDATION</kbd>
-
-**Objective:** Create structured Pydantic V2 models for Users API requests and responses, with clear validation rules.
-
-**Tasks & work**
-- Create request models for user creation and updates.
-- Create response models to define consistent API output.
-- Apply required fields, default values, type annotations, and field constraints.
-- Validate email format and numeric boundaries.
-- Reject unexpected request fields.
-- Handle invalid payloads with clear validation responses.
-- Test valid and invalid requests through Swagger UI.
-
-**Models covered:** `UserCreate`, `UserUpdate`, `UserResponse`, `UsersListResponse`, and `MessageResponse`.
-
-**Example request**
-```json
-{
-  "name": "Aditya Raj",
-  "email": "aditya@example.com",
-  "age": 21,
-  "phone": "9876543210",
-  "is_active": true
-}
-```
-
-**Concepts learned:** Pydantic V2, schema design, `EmailStr`, `Field`, model configuration, validation, and response serialization.
-
-**Storage note:** Day 04 is a separate learning API using in-memory storage; PostgreSQL persistence is handled in Day 05.
+- Create user request and response schemas.
+- Apply field types, required fields, defaults, and constraints.
+- Validate email formats and numeric boundaries.
+- Handle invalid payloads and test validation responses.
 
 [Open Day 04 documentation →](Day-04-Pydantic-V2-Users-Models/README.md)
 
----
+### Day 05 — PostgreSQL & SQLAlchemy
 
-### Day 05 — PostgreSQL, JWT Authentication & Task Management
+Day 05 is divided into two independent tasks.
 
-<kbd>DATABASE INTEGRATION</kbd>
+#### Task 01 — PostgreSQL Queries
 
-**Objective:** Practice PostgreSQL and build a database-backed FastAPI task manager with JWT authentication and teacher/student permissions.
+- Practice `INSERT`, `SELECT`, `UPDATE`, and `DELETE`.
+- Understand tables, records, and relational database operations.
+- Work with the `demoapi_day5` database.
 
-Day 05 is divided into two separate tasks inside one Day 05 folder.
+[Open Task 01 documentation →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-01-PostgreSQL/README.md)
 
-#### Task 1 — PostgreSQL Database & SQL Queries
+#### Task 02 — FastAPI Task Manager
 
-**Work covered**
-- Connect to PostgreSQL using pgAdmin.
-- Create and use the `demoapi_day5` database.
-- Create the `users` table with suitable columns and constraints.
-- Insert sample users and retrieve records.
-- Practice filtering, sorting, updating, and deleting records.
-- Use aggregate queries such as `COUNT` and `GROUP BY`.
+- Connect FastAPI to PostgreSQL using SQLAlchemy ORM.
+- Implement task management with teacher/student roles.
+- Add JWT access and refresh token authentication.
+- Hash passwords using Argon2 and support session revocation.
+- Add pagination, title search, status filters, and task assignment.
+- Manage database schema changes using Alembic.
+- Write pytest API tests and run them through GitHub Actions.
+- Deploy the application and PostgreSQL database using Render.
 
-**SQL concepts:** `CREATE TABLE`, `INSERT`, `SELECT`, `WHERE`, `ORDER BY`, `UPDATE`, `DELETE`, `COUNT`, and `GROUP BY`.
-
-[Open Task 1 — PostgreSQL →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-01-PostgreSQL/README.md)
-
-#### Task 2 — FastAPI Task Manager with SQLAlchemy ORM
-
-**Work covered**
-- Configure the PostgreSQL connection through environment variables.
-- Create a SQLAlchemy engine and session factory.
-- Add users, hashed passwords, roles, tasks, and revocable refresh-token sessions.
-- Implement login, logout, token refresh, and protected FastAPI dependencies.
-- Restrict task management, user visibility, and progress reporting by role.
-- Add task-list pagination, title search, and status/assignee filters.
-- Test authentication, permissions, task CRUD, and list queries with pytest and Postman.
-- Run the pytest suite automatically with GitHub Actions on every push and pull request.
-
-**Authentication and task endpoints**
+**Main API endpoints**
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/health` | API health check |
-| POST | `/auth/register`, `/auth/login`, `/auth/refresh`, `/auth/logout` | Authentication/session lifecycle |
-| GET | `/auth/me` | Current user's profile |
-| POST/GET/PATCH/DELETE | `/api/v3/tasks` | Role-protected task management |
-| GET | `/api/v3/progress` | Teacher-only progress report |
+| GET | `/health` | Health check |
+| POST | `/auth/register` | Register a student |
+| POST | `/auth/login` | Login and create a session |
+| POST | `/auth/refresh` | Rotate refresh token |
+| POST | `/auth/logout` | Revoke current session |
+| GET | `/auth/me` | Get current user profile |
+| GET | `/api/v3/users/` | List users (teacher only) |
+| GET | `/api/v3/users/{user_id}` | Get user profile |
+| POST / GET | `/api/v3/tasks` | Create or list tasks |
+| GET / PATCH / DELETE | `/api/v3/tasks/{task_id}` | Retrieve, update, or delete a task |
+| GET | `/api/v3/progress` | Student progress report (teacher only) |
 
-**Concepts learned:** PostgreSQL, SQLAlchemy ORM, Alembic schema migrations, JWT access/refresh tokens, Argon2 password hashing, session revocation, authentication dependencies, RBAC, and 401 vs 403 errors.
+**Task statuses:** `pending`, `in progress`, and `done`.
 
-**Database migration management:** The project uses Alembic to track schema changes as revision files instead of creating or changing tables automatically when the API starts. The checked-in revisions first create the `users`, `tasks`, and `sessions` tables, then add the optional `work_notes` column to `tasks`. Each revision includes both an `upgrade()` and a `downgrade()` operation.
-
-**Automated tests and CI:** The Task Manager tests use pytest and FastAPI's `TestClient`; run them from the Task 2 folder with `python -m pytest -q`. GitHub Actions runs the same suite on each push and pull request. Continuous integration (CI) automates checks on code changes so regressions are caught early and contributors get consistent feedback. The workflow and coverage details are documented in the [Task 2 README](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#running-the-pytest-suite).
-
-[Open Task 2 — Authenticated Task Manager →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
-
-**Database note:** PostgreSQL is required; the task README also documents using Supabase PostgreSQL when local PostgreSQL is unavailable. The seed command provisions a teacher and student from private environment variables. Apply the checked-in Alembic migrations to a fresh database before starting the API or running the seed command.
+[Open Task 02 documentation →](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md)
 
 ---
 
-## 📁 Repository Architecture
-
-The repository is organized into five independent learning days. Day 05 contains two separate tasks: PostgreSQL SQL practice and a database-backed FastAPI application. The Task 2 project now also includes **Alembic database migrations** to version and safely apply schema changes.
+## 📂 Repository Structure
 
 ```text
 DemoAPI/
-│
 ├── .github/
 │   └── workflows/
 │       └── tests.yml
-│
 ├── Day-01-Tools-Setup-and-Git/
 │   └── README.md
-│
 ├── Day-02-Docker-Development-Environment/
 │   ├── app/
-│   │   └── main.py
 │   ├── Dockerfile
 │   ├── docker-compose.yml
 │   ├── requirements.txt
 │   └── README.md
-│
 ├── Day-03-FastAPI-CRUD/
 │   ├── app/
-│   │   ├── main.py
-│   │   └── api/v1/endpoints/users.py
 │   ├── requirements.txt
 │   └── README.md
-│
 ├── Day-04-Pydantic-V2-Users-Models/
 │   ├── app/
-│   │   ├── main.py
-│   │   ├── api/v2/endpoints/users.py
-│   │   └── models/user.py
 │   ├── requirements.txt
 │   └── README.md
-│
 ├── Day-05-FastAPI-PostgreSQL-SQLAlchemy/
-│   │
 │   ├── Task-01-PostgreSQL/
-│   │   ├── users_queries.sql
 │   │   └── README.md
-│   │
 │   ├── Task-02-SQLAlchemy-CRUD/
 │   │   ├── app/
-│   │   │   ├── main.py
-│   │   │   ├── auth.py
-│   │   │   ├── database.py
-│   │   │   ├── dependencies.py
-│   │   │   ├── models.py
-│   │   │   ├── schemas.py
-│   │   │   ├── security.py
-│   │   │   ├── seed.py
-│   │   │   ├── tasks.py
-│   │   │   └── users.py
-│   │   │
 │   │   ├── alembic/
-│   │   │   ├── versions/
-│   │   │   │   ├── d5d28bcf185f_create_users_tasks_and_sessions.py
-│   │   │   │   └── 3b3f2c0dd5d0_add_work_notes_to_tasks.py
-│   │   │   ├── env.py
-│   │   │   └── script.py.mako
-│   │   │
 │   │   ├── tests/
-│   │   │   └── test_api.py
 │   │   ├── .env.example
 │   │   ├── alembic.ini
 │   │   ├── requirements.txt
 │   │   └── README.md
-│   │
 │   └── README.md
-│
 ├── postman/
 │   ├── collections/
-│   │   └── DemoAPI Task Manager — JWT and Roles/
-│   │       ├── .resources/
-│   │       ├── Teacher login.request.yaml
-│   │       ├── Teacher creates and assigns task.request.yaml
-│   │       ├── Teacher tests first task page.request.yaml
-│   │       ├── Student login.request.yaml
-│   │       └── ... (27 request files)
 │   ├── environments/
-│   │   ├── New Environment.environment.yaml
-│   │   └── New Environment-1.environment.yaml
 │   ├── globals/
-│   │   └── workspace.globals.yaml
-│   ├── DemoAPI-Task-Manager-Auth.postman_collection.json
-│   ├── DemoAPI.postman_collection.json
-│   ├── Health management api.postman_collection.json
-│   └── Health management api with data validation and error message.postman_collection.json
-│
+│   └── *.postman_collection.json
+├── render.yaml
 └── README.md
 ```
 
-### 🧩 New Alembic Migration Files — Day 05 Task 2
+## 🚀 Getting Started
 
-| File / Folder | Purpose |
-|---|---|
-| `alembic.ini` | Main Alembic configuration, including the migration script location and logging settings. |
-| `alembic/env.py` | Connects Alembic to the project's SQLAlchemy models and database URL; provides online and offline migration configuration. |
-| `alembic/script.py.mako` | Template used to generate new migration revision files. |
-| `alembic/versions/` | Stores the ordered database schema revisions. |
-| `d5d28bcf185f_create_users_tasks_and_sessions.py` | Initial migration that creates the `users`, `tasks`, and `sessions` tables, constraints, and indexes. |
-| `3b3f2c0dd5d0_add_work_notes_to_tasks.py` | Adds the optional `work_notes` column to the `tasks` table; its downgrade removes that column. |
+### Prerequisites
 
-**Migration workflow:** Update SQLAlchemy models → generate a revision with `alembic revision --autogenerate -m "describe the change"` → review the generated file in `alembic/versions/` → apply it with `alembic upgrade head`. Use `alembic current` to inspect the database revision, `alembic history` to view revision history, and `alembic downgrade -1` to roll back one revision.
+Install the tools required for the task you want to run:
 
-> **Important:** Run Alembic commands from the `Task-02-SQLAlchemy-CRUD` directory after configuring the database connection in `.env`. For an existing database, back it up and verify its schema before applying or stamping revisions. Do not apply the initial create-tables migration to a database that already contains those tables.
-
----
-
-## ⚙️ Installation & Running Guide
-
-Each day is an independent learning project with its own dependencies. Run the commands from the corresponding day/task folder.
+- Python 3.10 or newer
+- Visual Studio Code
+- Git
+- Docker Desktop (Day 02)
+- PostgreSQL (Day 05)
+- Postman (recommended for API testing)
 
 ### 1. Clone the repository
 
@@ -362,9 +245,9 @@ git clone https://github.com/adityaraj150107-star/DemoAPI.git
 cd DemoAPI
 ```
 
-### 2. Open the required Day folder
+### 2. Navigate to a task folder
 
-Example for Day 05 SQLAlchemy:
+Example — Day 05 Task 02:
 
 ```powershell
 cd Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD
@@ -377,240 +260,212 @@ py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 4. Install that task's dependencies
+### 4. Install dependencies
 
 ```powershell
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 5. Configure PostgreSQL for Day 05 Task 2
+### 5. Configure environment variables
 
-Create the `demoapi_day5` database, copy `.env.example` to `.env`, and update the PostgreSQL connection details and JWT signing key. If local PostgreSQL is unavailable, the Task 2 README explains Supabase PostgreSQL setup.
+Copy `.env.example` to `.env`, create the `demoapi_day5` PostgreSQL database, and update the database connection and JWT secret.
 
-Example connection format:
+Example:
 
 ```env
 DATABASE_URL=postgresql+psycopg://postgres:YOUR_PASSWORD@localhost:5432/demoapi_day5
+JWT_SECRET_KEY=YOUR_PRIVATE_SECRET
+ACCESS_TOKEN_MINUTES=15
+REFRESH_TOKEN_DAYS=7
 ```
 
-Keep your actual `.env` file private. Never commit database passwords or API secrets.
+Never commit your real `.env`, database password, JWT secret, or seed credentials.
 
-### 6. Apply database migrations (Day 05 Task 2)
+### 6. Apply database migrations
 
-Run these commands from the `Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD` folder after installing dependencies and configuring `.env`:
+Run from the Task 02 directory:
 
 ```powershell
-# Apply all pending migrations
 alembic upgrade head
-
-# Check the current database revision
 alembic current
-
-# View available migration history
 alembic history
 ```
 
-When you change a SQLAlchemy model and need a schema update, generate and review a migration before applying it:
+After changing SQLAlchemy models, generate a migration, review it, and then apply it:
 
 ```powershell
-alembic revision --autogenerate -m "add a new field"
+alembic revision --autogenerate -m "describe the schema change"
 alembic upgrade head
 ```
 
-To undo the latest applied revision:
-
-```powershell
-alembic downgrade -1
-```
-
-> **Existing database warning:** Back up an existing database and compare its actual schema with the migration revisions before upgrading. The initial revision creates tables; do not run it against a database that already has those tables. `alembic stamp` only records a revision and does not execute the migration, so use it only when the database schema already matches that revision.
-
-### 7. Run the FastAPI application
-
-For Day 03 or Day 04, run from that day's folder:
+### 7. Start the API
 
 ```powershell
 uvicorn app.main:app --reload
 ```
 
-For Day 05 Task 2, use the same command from the Task 2 folder.
+- **Swagger UI:** http://127.0.0.1:8000/docs
+- **ReDoc:** http://127.0.0.1:8000/redoc
+- **Health check:** http://127.0.0.1:8000/health
 
-For Day 02 Docker execution, follow its README and use:
+Each day is an independent learning project. Use the README inside that day/task folder for its exact setup and run instructions.
 
-```powershell
+## 🐳 Docker
+
+Day 02 contains the Docker development environment.
+
+From the Day 02 directory, build and start the application:
+
+```bash
 docker compose up --build
 ```
 
-### 🌐 Live Deployment — Render
+Run in the background:
+
+```bash
+docker compose up --build -d
+```
+
+Useful commands:
+
+```bash
+docker compose ps
+docker compose logs -f
+docker compose down
+```
+
+See the [Day 02 README](Day-02-Docker-Development-Environment/README.md) for the complete Docker setup.
+
+## 🌐 Live Deployment — Render
 
 <p align="center">
-  <a href="https://demoapi-task-manager.onrender.com"><img src="https://img.shields.io/badge/Live%20API-Render-46E3B7?logo=render&logoColor=black" alt="Live API on Render"></a>
-  <a href="https://demoapi-task-manager.onrender.com/docs"><img src="https://img.shields.io/badge/API%20Docs-Swagger%20UI-85EA2D?logo=swagger&logoColor=black" alt="Swagger UI"></a>
-  <img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL database">
+  <a href="https://demoapi-task-manager.onrender.com"><img src="https://img.shields.io/badge/Live%20API-Render-46E3B7?logo=render&logoColor=black" alt="Live API"></a>
+  <a href="https://demoapi-task-manager.onrender.com/docs"><img src="https://img.shields.io/badge/Swagger-API%20Documentation-85EA2D?logo=swagger&logoColor=black" alt="Swagger UI"></a>
+  <a href="https://demoapi-task-manager.onrender.com/health"><img src="https://img.shields.io/badge/Health-Check-success" alt="Health check"></a>
 </p>
 
-The **Day 05 Task Manager API** is deployed on Render and connected to Render PostgreSQL.
+The **Day 05 Task Manager API** is deployed on Render and connected to a Render PostgreSQL database.
 
-| Resource | Link | What it does |
+| Resource | Link | Purpose |
 |---|---|---|
-| **API** | [demoapi-task-manager.onrender.com](https://demoapi-task-manager.onrender.com) | Base URL for API requests |
-| **Interactive docs** | [Swagger UI](https://demoapi-task-manager.onrender.com/docs) | Explore endpoints and try requests in your browser |
-| **Health check** | [`/health`](https://demoapi-task-manager.onrender.com/health) | Confirms the service is responding |
+| Live API | [Open DemoAPI](https://demoapi-task-manager.onrender.com) | Deployed API base URL |
+| Swagger UI | [Open API Docs](https://demoapi-task-manager.onrender.com/docs) | Explore and test endpoints |
+| Health Check | [Check API Health](https://demoapi-task-manager.onrender.com/health) | Verify service response |
 
-#### Deployment overview
+### Deployment configuration
 
-- The root [`render.yaml`](render.yaml) Blueprint defines the Render web service and PostgreSQL database. Its `rootDir` points to the Day 05 Task 2 application.
-- Render installs the Python dependencies, then starts the app by applying Alembic migrations, running the idempotent teacher/student seed, and launching Uvicorn.
-- GitHub pushes deploy automatically after the configured checks pass.
+The repository-root `render.yaml` Blueprint defines:
 
-#### Environment variables
+- A Python web service named `demoapi-task-manager`.
+- A Render PostgreSQL database named `demoapi-task-manager-db`.
+- The Task 02 application directory as the service root.
+- Dependency installation from `requirements.txt`.
+- Startup migrations, seed setup, and Uvicorn server command.
+- Automatic deployment after configured checks pass.
 
-| Variable | Configuration |
+### Required private environment variables
+
+| Variable | Purpose |
 |---|---|
-| `DATABASE_URL` | Supplied by the Render PostgreSQL database |
-| `JWT_SECRET_KEY` | Generated privately by Render |
-| `ACCESS_TOKEN_MINUTES` / `REFRESH_TOKEN_DAYS` | Token lifetime settings |
-| `SEED_TEACHER_EMAIL` / `SEED_TEACHER_PASSWORD` | Set privately in Render |
-| `SEED_STUDENT_EMAIL` / `SEED_STUDENT_PASSWORD` | Set privately in Render |
+| `DATABASE_URL` | Render PostgreSQL connection string |
+| `JWT_SECRET_KEY` | Generated JWT signing secret |
+| `ACCESS_TOKEN_MINUTES` | Access token lifetime |
+| `REFRESH_TOKEN_DAYS` | Refresh session lifetime |
+| `SEED_TEACHER_EMAIL` / `SEED_TEACHER_PASSWORD` | Initial teacher account |
+| `SEED_STUDENT_EMAIL` / `SEED_STUDENT_PASSWORD` | Initial student account |
 
-> **Security:** Secret values and seed passwords belong in Render's private environment settings—not in this README, a committed `.env` file, or GitHub.
+Keep all passwords and secret values in Render's private environment settings. Do not add them to this README or commit them to GitHub.
 
-> **Free-plan notes:** The web service may sleep after 15 minutes without traffic, so its first request afterward can take about a minute. The free PostgreSQL database expires after 30 days; export or migrate any data you need before then. See [Render's free-plan details](https://render.com/docs/free).
+> **Render free-plan note:** The free web service may spin down after 15 minutes without traffic, so its first request after inactivity can take about a minute. The free PostgreSQL database expires 30 days after creation. Export or migrate any data you need to keep. See [Render free plan details](https://render.com/docs/free).
 
-For Blueprint setup and migration details, see the [Task Manager deployment notes](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#deploy-on-render).
+For the full deployment procedure, see [Task 02 — Deploy on Render](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#deploy-on-render).
 
----
+## 🔁 Continuous Integration — GitHub Actions
 
-## 📖 API Documentation & Testing
+The workflow at `.github/workflows/tests.yml` runs the Task Manager pytest suite when code is pushed or a pull request is opened.
 
-When a FastAPI application is running locally:
+**CI workflow:**
 
-| Tool | URL | Use |
-|---|---|---|
-| Swagger UI | http://127.0.0.1:8000/docs | Explore and test API endpoints |
-| ReDoc | http://127.0.0.1:8000/redoc | Read generated API documentation |
-| Health endpoint | http://127.0.0.1:8000/health | Check service health where implemented |
-| Postman | Configure request to localhost:8000 | Send and verify HTTP requests |
+1. Check out the repository.
+2. Set up Python 3.12.
+3. Install Task 02 dependencies.
+4. Run `python -m pytest -q`.
 
-Use the README inside each day folder for the exact routes and request examples.
+Continuous Integration (CI) automatically checks code changes so test failures can be identified before changes are merged.
 
----
+## 🧪 API Testing
 
-## 📚 Key Learning Outcomes
+Use Swagger UI or the Postman collections included in this repository.
 
-By working through these five days, the repository demonstrates practice with:
+1. Start the relevant FastAPI application.
+2. Open `/docs` in your browser.
+3. Select an endpoint and click **Try it out**.
+4. Enter the required parameters or JSON body.
+5. Execute the request and inspect the response.
 
-- Setting up a Python backend development environment.
-- Managing source code using Git and GitHub.
-- Understanding Docker images, containers, and Compose.
-- Designing RESTful APIs with FastAPI.
-- Implementing CRUD operations and HTTP error handling.
-- Creating and validating request/response schemas using Pydantic V2.
-- Writing PostgreSQL queries for database operations.
-- Connecting FastAPI to PostgreSQL using SQLAlchemy ORM.
-- Organizing backend code into routes, schemas, models, database, and CRUD layers.
-- Testing APIs through Swagger UI and Postman.
+Run automated tests for Day 05 Task 02 from its directory:
 
----
+```powershell
+python -m pytest -q
+```
 
-## 🔐 Security & Project Notes
+## 🗄️ Database Migrations — Alembic
 
-- Each day has its own project folder and dependency file to reduce dependency conflicts.
-- Day 03 and Day 04 use in-memory data for learning; data resets when their application restarts.
-- Day 05 Task 2 uses PostgreSQL for persistent user records.
-- Use `.env.example` as a template and keep local secrets out of Git.
-- Day 05 Task 2 provides a PostgreSQL-backed task manager with teacher/student roles, JWT-based authentication, task assignment, status updates, and work notes.
-- Alembic manages Day 05 Task 2 schema changes; database tables are created or changed by applying reviewed migrations, not by relying on automatic table creation at API startup.
-- Run and test each application locally before treating a task as completed.
+Alembic manages database schema changes through versioned migration files instead of relying on automatic table creation when the API starts.
 
----
+Common commands:
 
-## ✨ Key Features
+| Command | Purpose |
+|---|---|
+| `alembic revision --autogenerate -m "message"` | Generate a migration candidate |
+| `alembic upgrade head` | Apply all pending migrations |
+| `alembic current` | Show the current database revision |
+| `alembic history` | Display migration history |
+| `alembic downgrade -1` | Roll back one revision |
 
-- 📅 **Day-wise Learning Path** — Five organized days with separate task folders and documentation.
-- 🐍 **FastAPI REST APIs** — Build and test backend endpoints using FastAPI.
-- 🔄 **CRUD Operations** — Practice creating, reading, updating, and deleting user records.
-- ✅ **Pydantic V2 Validation** — Define request and response models with validation rules.
-- 🐘 **PostgreSQL Integration** — Create tables and practice SQL queries.
-- 🔗 **SQLAlchemy ORM** — Connect FastAPI with PostgreSQL and manage database records.
-- 🔄 **Alembic Migrations** — Version database schema changes with revision history, upgrades, and rollbacks.
-- 🔐 **JWT Authentication** — Practice login, protected routes, refresh tokens, and role-based access in Day 05.
-- 🐳 **Docker Development** — Build and run a containerized FastAPI health-check API.
-- 🧪 **API Testing** — Verify endpoints through Swagger UI, Postman, and automated tests where provided.
-- 📖 **Task Documentation** — Each day/task includes its own README and run instructions.
-
-## ⚙️ Prerequisites
-
-Before running a task, install the tools required by that task:
-
-- 🐍 Python 3.10 or a compatible version
-- 🧰 Visual Studio Code or another Python editor
-- 🔧 Git
-- 🐳 Docker Desktop (required for Day 02)
-- 🐘 PostgreSQL and pgAdmin (required for Day 05 database tasks)
-- 🔄 Alembic (installed automatically from Task 2 `requirements.txt` for database migrations)
-- 📬 Postman (recommended for API testing)
-
-Each day is an independent learning project. Check that day's README for its exact dependencies and setup instructions.
-
-## 📋 Task Status
-
-- `pending`
-- `in_progress`
-- `done`
-
-## 👤 User Status
-
-- `active`
-- `inactive`
-
----
+Always review generated migration files before applying them. Back up an existing database and verify its schema before applying the initial create-tables migration.
 
 ## 🩺 Troubleshooting
 
-| Issue | Suggested Solution |
+| Issue | Suggested solution |
 |---|---|
-| Python command is not recognized | Install Python and enable the PATH option, then reopen the terminal. |
-| Module not found | Open the correct Day/Task folder, activate its virtual environment, and install its `requirements.txt`. |
-| Uvicorn command is not recognized | Activate the virtual environment and install the task dependencies. |
-| Port 8000 is already in use | Stop the process using the port or run the API on another port. |
-| Docker command fails | Start Docker Desktop and wait until the engine is running. |
-| PostgreSQL connection fails | Check that PostgreSQL is running and verify the database name, username, password, host, and port in `.env`. |
-| API returns 401 or 403 | Check the authentication token and the role/permissions required by the endpoint. |
+| Python command not recognized | Install Python, enable PATH, and reopen the terminal. |
+| Module not found | Activate the correct virtual environment and install that task's requirements. |
+| Uvicorn not recognized | Activate the environment and install dependencies. |
+| Port 8000 is occupied | Stop the conflicting process or use another port. |
+| Docker command fails | Start Docker Desktop and wait for the engine to become ready. |
+| PostgreSQL connection fails | Check database name, username, password, host, port, and service status. |
+| API returns 401 | Check the access token and session validity. |
+| API returns 403 | Check whether the logged-in user's role permits the operation. |
+| Render service is slow to respond | The free service may be waking from inactivity. |
 
-## 🔒 Security Best Practices
+## 🔐 Security Best Practices
 
-- Keep real passwords, database URLs, JWT secrets, and API keys inside local environment variables.
-- Never commit the actual `.env` file; use an `.env.example` template for required variable names.
-- Use password hashing instead of storing plain-text passwords.
-- Protect private endpoints with authentication and appropriate authorization checks.
-- Validate incoming request data before processing it.
-- Do not expose database credentials or sensitive tokens in screenshots, logs, or public documentation.
+- Keep database credentials, JWT secrets, and seed passwords in environment variables.
+- Never commit the actual `.env` file.
+- Use `.env.example` with placeholder values for configuration guidance.
+- Store passwords using secure hashing; never store plain-text passwords.
+- Protect private endpoints with authentication and role-based authorization.
+- Do not expose secrets in screenshots, logs, or public documentation.
+- Review database migrations before applying them to an existing database.
 
-## 🎯 Learning Objectives
+## 🎯 Learning Outcomes
 
-This repository provides practical experience with:
+Through this repository, I have practiced:
 
 - Python backend development and environment setup.
 - Git and GitHub version-control workflows.
 - Docker images, containers, Dockerfiles, and Docker Compose.
-- REST API design and CRUD operations using FastAPI.
-- Request validation and response serialization using Pydantic V2.
-- SQL queries, relational database concepts, and PostgreSQL.
-- SQLAlchemy engine, sessions, ORM models, and database-backed CRUD.
-- Alembic revision generation, migration review, schema upgrades, migration history, and safe rollbacks.
-- JWT authentication, refresh-token flow, and role-based access control.
-- API testing through Swagger UI, Postman, and pytest.
-
-## 🔮 Future Improvements
-
-Possible next steps for this learning repository:
-
-- Expand automated test coverage for additional API edge cases.
-- Add structured logging and consistent error responses.
-- Add API rate limiting and production configuration examples.
-- Deploy selected APIs to a cloud hosting platform.
+- REST API design and CRUD operations with FastAPI.
+- Request validation using Pydantic V2.
+- PostgreSQL queries and relational database concepts.
+- SQLAlchemy ORM models, sessions, and database operations.
+- Alembic migration generation, upgrades, history, and rollbacks.
+- JWT authentication, refresh tokens, and role-based access control.
+- API testing with Swagger UI, Postman, and pytest.
+- Continuous Integration with GitHub Actions.
+- Deployment of a FastAPI application and PostgreSQL database on Render.
 
 ## 🤝 Contributing
 
@@ -625,7 +480,7 @@ This repository is maintained as a practical learning project. Suggestions and i
 ## 👤 Author
 
 **Aditya Rajput**  
-BCA Student | Backend Development | Python & FastAPI Learner
+BCA Student | Backend Development | Python & FastAPI
 
 <p>
   <a href="https://github.com/adityaraj150107-star"><img src="https://img.shields.io/badge/GitHub-adityaraj150107--star-181717?logo=github" alt="GitHub"></a>
@@ -634,10 +489,7 @@ BCA Student | Backend Development | Python & FastAPI Learner
 
 ---
 
-<div align="center">
-
-**Thanks for visiting DemoAPI!**
-
-*Learning by building, one day at a time.*
-
-</div>
+<p align="center">
+  <strong>Thanks for visiting DemoAPI!</strong><br>
+  <em>Learning by building, one day at a time.</em>
+</p>
