@@ -442,11 +442,43 @@ For Day 02 Docker execution, follow its README and use:
 docker compose up --build
 ```
 
-### Deploy the Task Manager API on Render
+### 🌐 Live Deployment — Render
 
-The repository-root [`render.yaml`](render.yaml) Blueprint configures a free Render web service and PostgreSQL database for Day 05 Task 2. In Render, create a Blueprint from this GitHub repository and select `main`. Enter the teacher and student seed email/password values in Render's environment settings; keep them, the database URL, and JWT secret out of GitHub. The Blueprint generates a JWT secret, and the service applies Alembic migrations and seeds accounts before starting the API.
+<p align="center">
+  <a href="https://demoapi-task-manager.onrender.com"><img src="https://img.shields.io/badge/Live%20API-Render-46E3B7?logo=render&logoColor=black" alt="Live API on Render"></a>
+  <a href="https://demoapi-task-manager.onrender.com/docs"><img src="https://img.shields.io/badge/API%20Docs-Swagger%20UI-85EA2D?logo=swagger&logoColor=black" alt="Swagger UI"></a>
+  <img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL database">
+</p>
 
-The live API is available at [https://demoapi-task-manager.onrender.com](https://demoapi-task-manager.onrender.com); open its [interactive docs](https://demoapi-task-manager.onrender.com/docs) or [health check](https://demoapi-task-manager.onrender.com/health). Free web services sleep after 15 minutes idle; first request wake-up can take about a minute. Free Render PostgreSQL databases expire after 30 days. See the [Task Manager deployment notes](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#deploy-on-render) before creating the service.
+The **Day 05 Task Manager API** is deployed on Render and connected to Render PostgreSQL.
+
+| Resource | Link | What it does |
+|---|---|---|
+| **API** | [demoapi-task-manager.onrender.com](https://demoapi-task-manager.onrender.com) | Base URL for API requests |
+| **Interactive docs** | [Swagger UI](https://demoapi-task-manager.onrender.com/docs) | Explore endpoints and try requests in your browser |
+| **Health check** | [`/health`](https://demoapi-task-manager.onrender.com/health) | Confirms the service is responding |
+
+#### Deployment overview
+
+- The root [`render.yaml`](render.yaml) Blueprint defines the Render web service and PostgreSQL database. Its `rootDir` points to the Day 05 Task 2 application.
+- Render installs the Python dependencies, then starts the app by applying Alembic migrations, running the idempotent teacher/student seed, and launching Uvicorn.
+- GitHub pushes deploy automatically after the configured checks pass.
+
+#### Environment variables
+
+| Variable | Configuration |
+|---|---|
+| `DATABASE_URL` | Supplied by the Render PostgreSQL database |
+| `JWT_SECRET_KEY` | Generated privately by Render |
+| `ACCESS_TOKEN_MINUTES` / `REFRESH_TOKEN_DAYS` | Token lifetime settings |
+| `SEED_TEACHER_EMAIL` / `SEED_TEACHER_PASSWORD` | Set privately in Render |
+| `SEED_STUDENT_EMAIL` / `SEED_STUDENT_PASSWORD` | Set privately in Render |
+
+> **Security:** Secret values and seed passwords belong in Render's private environment settings—not in this README, a committed `.env` file, or GitHub.
+
+> **Free-plan notes:** The web service may sleep after 15 minutes without traffic, so its first request afterward can take about a minute. The free PostgreSQL database expires after 30 days; export or migrate any data you need before then. See [Render's free-plan details](https://render.com/docs/free).
+
+For Blueprint setup and migration details, see the [Task Manager deployment notes](Day-05-FastAPI-PostgreSQL-SQLAlchemy/Task-02-SQLAlchemy-CRUD/README.md#deploy-on-render).
 
 ---
 
